@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Meta Ads — CA - Julia Farias | 6 Mai – 4 Jun 2026</title>
+<style>
+:root, [data-theme="dark"] {
+  --bg:#0c0e18; --surface:#13161f; --surface2:#1a1e2e; --surface3:#222640;
+  --border:#252a3d; --accent:#5b7fff; --accent2:#a855f7;
+  --green:#22c55e; --yellow:#f59e0b; --red:#ef4444;
+  --text:#e4e9f5; --muted:#5e6a8a; --meta:#1877f2; --ig:#e1306c;
+  --card-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+[data-theme="light"] {
+  --bg:#f5f7fa; --surface:#ffffff; --surface2:#f0f2f5; --surface3:#e8eaed;
+  --border:#e2e5ea; --accent:#3b5bdb; --accent2:#7c3aed;
+  --green:#16a34a; --yellow:#d97706; --red:#dc2626;
+  --text:#1e293b; --muted:#64748b; --meta:#1877f2; --ig:#e1306c;
+  --card-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; font-size:15px; line-height:1.65; -webkit-text-size-adjust:100%; }
+.wrap { max-width:1140px; margin:0 auto; padding:0 32px; overflow-x:hidden; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+
+/* Header */
+.header { background:linear-gradient(160deg, rgba(91,127,255,.08) 0%, var(--bg) 60%); border-bottom:1px solid var(--border); padding:36px 0; }
+.header-inner { max-width:1140px; margin:0 auto; padding:0 32px; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; }
+.header h1 { font-size:32px; font-weight:800; letter-spacing:-0.5px; margin-bottom:4px; }
+.header h1 span { color:var(--accent); }
+.header-sub { color:var(--muted); font-size:14px; }
+.header-right { text-align:right; flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
+.period-label { font-size:24px; font-weight:800; background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.gen-date { color:var(--muted); font-size:12px; }
+.theme-toggle { background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:6px 14px; cursor:pointer; font-size:18px; transition:all .2s; }
+.theme-toggle:hover { border-color:var(--accent); }
+.chips { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+.chip { display:inline-flex; align-items:center; gap:5px; border-radius:20px; padding:4px 14px; font-size:12px; font-weight:700; letter-spacing:.4px; }
+.chip.meta { background:rgba(24,119,242,.12); border:1px solid rgba(24,119,242,.25); color:var(--meta); }
+.chip.ig { background:rgba(225,48,108,.12); border:1px solid rgba(225,48,108,.25); color:var(--ig); }
+.chip.agency { background:rgba(91,127,255,.12); border:1px solid rgba(91,127,255,.25); color:var(--accent); }
+
+/* Sections */
+.main { padding:40px 0; }
+.section-title { font-size:12px; font-weight:700; letter-spacing:1.8px; color:var(--muted); text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+.section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* KPIs */
+.kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-bottom:40px; }
+.kpi-card { background:var(--surface); border:1px solid var(--border); border-top:3px solid var(--accent); border-radius:14px; padding:22px 20px; box-shadow:var(--card-shadow); }
+.kpi-card.g { border-top-color:var(--green); } .kpi-card.p { border-top-color:var(--accent2); } .kpi-card.ig { border-top-color:var(--ig); } .kpi-card.y { border-top-color:var(--yellow); }
+.kpi-label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; font-weight:700; }
+.kpi-value { font-size:28px; font-weight:900; margin:8px 0 4px; line-height:1; white-space:nowrap; }
+.kpi-sub { font-size:13px; color:var(--muted); white-space:nowrap; }
+.delta { font-size:13px; font-weight:700; margin-left:4px; }
+.delta.up { color:var(--green); } .delta.down { color:var(--red); } .delta.neutral { color:var(--muted); }
+
+/* Charts CSS */
+.charts-row { display:grid; grid-template-columns:2fr 1fr; gap:20px; margin-bottom:40px; }
+.chart-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px; box-shadow:var(--card-shadow); }
+.chart-card h3 { font-size:14px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+.css-bars { display:flex; align-items:flex-end; gap:1px; height:180px; padding:4px 0; border-bottom:1px solid var(--border); }
+.css-bar { flex:1; min-width:2px; max-width:24px; border-radius:3px 3px 0 0; position:relative; cursor:pointer; transition:opacity .15s; background:var(--accent); }
+.css-bar:hover { opacity:.75; }
+.css-bar .bar-tip { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:var(--surface); border:1px solid var(--border); padding:6px 10px; border-radius:8px; font-size:11px; white-space:nowrap; z-index:20; box-shadow:0 4px 12px rgba(0,0,0,.2); color:var(--text); line-height:1.5; }
+.css-bar:hover .bar-tip { display:block; }
+.bar-legend { display:flex; gap:16px; margin-top:10px; justify-content:center; }
+.bar-legend span { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:5px; }
+.bar-legend i { display:inline-block; width:10px; height:10px; border-radius:2px; }
+.css-bars-axis { display:flex; justify-content:space-between; font-size:10px; color:var(--muted); margin-top:4px; padding:0 2px; }
+.dist-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.dist-label { min-width:100px; max-width:140px; font-size:13px; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dist-bar-wrap { flex:1; height:26px; background:var(--surface2); border-radius:6px; overflow:hidden; }
+.dist-bar { height:100%; border-radius:6px; display:flex; align-items:center; padding:0 8px; font-size:11px; font-weight:700; color:#fff; white-space:nowrap; min-width:fit-content; }
+.dist-val { min-width:80px; text-align:right; font-size:13px; color:var(--muted); white-space:nowrap; }
+
+/* Campaigns */
+.camp-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px; }
+.camp-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:var(--card-shadow); }
+.camp-top { padding:20px 24px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.camp-funnel-tag { display:inline-block; font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:6px; margin-bottom:6px; }
+.camp-funnel-tag.tofu { background:rgba(91,127,255,.12); color:var(--accent); }
+.camp-funnel-tag.mofu { background:rgba(168,85,247,.12); color:var(--accent2); }
+.camp-funnel-tag.bofu { background:rgba(34,197,94,.12); color:var(--green); }
+.camp-name { font-size:15px; font-weight:700; line-height:1.4; }
+.camp-spend { font-size:26px; font-weight:900; text-align:right; white-space:nowrap; }
+.camp-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
+.camp-metric { background:var(--surface); padding:16px 18px; }
+.camp-metric-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; font-weight:600; margin-bottom:4px; }
+.camp-metric-value { font-size:20px; font-weight:800; white-space:nowrap; }
+.sat-badge { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; margin-top:4px; }
+.sat-badge.ok { background:rgba(34,197,94,.12); color:var(--green); }
+.sat-badge.atencao { background:rgba(245,158,11,.12); color:var(--yellow); }
+.sat-badge.critica { background:rgba(239,68,68,.12); color:var(--red); }
+.camp-actions { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:18px 24px; }
+.action-box { background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:12px 8px; text-align:center; }
+.action-val { font-size:20px; font-weight:800; margin:4px 0 2px; white-space:nowrap; }
+.action-name { font-size:11px; color:var(--muted); }
+
+/* Ad Sets table */
+.adsets-table { width:100%; border-collapse:collapse; margin-bottom:40px; background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:var(--card-shadow); }
+.adsets-table th { background:var(--surface2); padding:14px 16px; text-align:left; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.7px; color:var(--muted); border-bottom:1px solid var(--border); }
+.adsets-table td { padding:14px 16px; border-bottom:1px solid var(--border); font-size:14px; white-space:nowrap; }
+.adsets-table td:first-child { white-space:normal; min-width:150px; }
+.adsets-table tr:last-child td { border-bottom:none; }
+.adsets-table .camp-group { background:var(--surface2); font-weight:700; font-size:13px; color:var(--accent); }
+
+/* Creatives */
+.creative-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px; }
+.creative-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:var(--card-shadow); }
+.creative-header { padding:18px 22px; border-bottom:1px solid var(--border); }
+.creative-header .camp-path { font-size:12px; color:var(--muted); margin-bottom:4px; }
+.creative-header .ad-name { font-size:15px; font-weight:700; }
+.creative-header .status-badge { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; margin-left:8px; }
+.creative-header .status-badge.active { background:rgba(34,197,94,.12); color:var(--green); }
+.creative-header .status-badge.paused { background:rgba(245,158,11,.12); color:var(--yellow); }
+.creative-body { padding:18px 22px; }
+.creative-thumb { width:100%; max-height:200px; object-fit:cover; border-radius:10px; margin-bottom:14px; background:var(--surface2); }
+.creative-caption { font-size:13px; color:var(--muted); line-height:1.5; margin-bottom:10px; max-height:60px; overflow:hidden; }
+.creative-links { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+.creative-links a { font-size:12px; padding:4px 10px; background:var(--surface2); border:1px solid var(--border); border-radius:6px; }
+.creative-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:16px 22px; border-top:1px solid var(--border); }
+.cm-item { text-align:center; }
+.cm-val { font-size:18px; font-weight:800; white-space:nowrap; }
+.cm-label { font-size:11px; color:var(--muted); }
+.retention-funnel { padding:16px 22px 18px; border-top:1px solid var(--border); }
+.retention-title { font-size:12px; font-weight:700; color:var(--text); text-transform:uppercase; letter-spacing:.7px; margin-bottom:2px; }
+.ret-subtitle { font-size:12px; color:var(--muted); margin-bottom:14px; }
+.ret-row { display:grid; grid-template-columns:110px 1fr 100px; align-items:center; gap:10px; margin-bottom:10px; }
+.ret-row-label { font-size:12px; color:var(--muted); font-weight:600; white-space:nowrap; }
+.ret-row-bar-wrap { background:var(--surface2); border-radius:6px; height:20px; overflow:hidden; }
+.ret-row-bar { height:100%; border-radius:6px; transition:width .5s; }
+.ret-row-nums { display:flex; flex-direction:column; align-items:flex-end; }
+.ret-count { font-size:13px; font-weight:800; line-height:1.2; }
+.ret-pct { font-size:11px; color:var(--muted); }
+
+/* Reels */
+.reels-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:40px; }
+.reel-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; position:relative; box-shadow:var(--card-shadow); }
+.reel-card.top { border-left:4px solid var(--green); }
+.reel-rank { position:absolute; top:14px; right:16px; font-size:11px; font-weight:800; padding:3px 10px; border-radius:6px; background:rgba(34,197,94,.12); color:var(--green); }
+.reel-date { font-size:12px; color:var(--muted); margin-bottom:10px; }
+.reel-caption { font-size:13px; color:var(--muted); line-height:1.5; margin-bottom:14px; max-height:42px; overflow:hidden; }
+.reel-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.reel-metric { text-align:center; }
+.reel-metric-val { font-size:18px; font-weight:800; white-space:nowrap; }
+.reel-metric-label { font-size:11px; color:var(--muted); margin-top:2px; }
+.reel-extras { display:flex; gap:16px; margin-top:12px; padding-top:12px; border-top:1px solid var(--border); flex-wrap:wrap; }
+.reel-extra { font-size:13px; color:var(--muted); } .reel-extra strong { color:var(--text); }
+
+/* Totals bar */
+.totals-bar { background:linear-gradient(135deg,rgba(91,127,255,.06),rgba(225,48,108,.06)); border:1px solid var(--border); border-radius:14px; padding:22px 28px; margin-bottom:40px; display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px; }
+.totals-item { text-align:center; }
+.totals-label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; font-weight:700; }
+.totals-value { font-size:34px; font-weight:900; background:linear-gradient(135deg,var(--accent),var(--ig)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; white-space:nowrap; }
+.totals-sub { font-size:13px; color:var(--muted); }
+
+/* Alerts */
+.alerts-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:40px; }
+.alert-card { background:var(--surface); border:1px solid var(--border); border-left:4px solid; border-radius:14px; padding:20px 22px; display:flex; gap:14px; box-shadow:var(--card-shadow); }
+.alert-card.success { border-left-color:var(--green); } .alert-card.warning { border-left-color:var(--yellow); }
+.alert-card.danger { border-left-color:var(--red); } .alert-card.info { border-left-color:var(--accent); }
+.alert-icon { font-size:22px; flex-shrink:0; margin-top:2px; }
+.alert-title { font-size:15px; font-weight:700; margin-bottom:4px; }
+.alert-desc { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* Conversion cards */
+.conv-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:40px; }
+.conv-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 18px; text-align:center; box-shadow:var(--card-shadow); }
+.conv-emoji { font-size:24px; margin-bottom:6px; }
+.conv-val { font-size:26px; font-weight:900; white-space:nowrap; }
+.conv-label { font-size:12px; color:var(--muted); margin-top:2px; }
+.conv-cost { font-size:12px; color:var(--accent); margin-top:6px; font-weight:700; }
+
+/* Blue conversation cards */
+.kpi-card.blue-card { background:#1877f2; border-color:#1877f2; border-top-color:#1251b5; }
+.kpi-card.blue-card .kpi-label { color:rgba(255,255,255,.85); }
+.kpi-card.blue-card .kpi-value { color:#fff; }
+.kpi-card.blue-card .kpi-sub { color:rgba(255,255,255,.7); }
+
+/* Demographic grouped bar charts */
+.demo-charts-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px; }
+.demo-chart { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px; box-shadow:var(--card-shadow); }
+.demo-chart h3 { font-size:13px; font-weight:700; color:var(--text); margin-bottom:20px; }
+.demo-bars { display:flex; align-items:flex-end; gap:8px; height:180px; border-bottom:1px solid var(--border); padding-bottom:0; }
+.demo-group { display:flex; flex-direction:column; align-items:center; flex:1; }
+.demo-group-bars { display:flex; align-items:flex-end; gap:3px; }
+.demo-bar-wrap { display:flex; flex-direction:column; align-items:center; gap:3px; }
+.demo-val { font-size:10px; font-weight:700; color:var(--green); white-space:nowrap; line-height:1; min-height:13px; }
+.demo-bar { width:18px; border-radius:3px 3px 0 0; transition:opacity .15s; }
+.demo-bar:hover { opacity:.75; }
+.demo-reach { background:#22c55e; }
+.demo-conv { background:#1877f2; }
+.demo-label { font-size:10px; color:var(--muted); margin-top:6px; text-align:center; }
+.demo-legend { display:flex; gap:16px; justify-content:center; margin-top:12px; }
+.demo-legend span { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:5px; }
+.demo-legend i { display:inline-block; width:10px; height:10px; }
+
+/* Footer */
+.footer { border-top:1px solid var(--border); padding:28px 0; color:var(--muted); font-size:13px; }
+.footer-inner { max-width:1140px; margin:0 auto; padding:0 32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; word-break:break-word; }
+.footer strong {{ color:var(--accent); }}
+
+/* Botão exportar PDF */
+.export-btn {{ background:var(--accent); border:none; border-radius:10px; padding:7px 16px; cursor:pointer; font-size:13px; font-weight:700; color:#fff; display:flex; align-items:center; gap:6px; transition:opacity .2s; }}
+.export-btn:hover {{ opacity:.85; }}
+
+/* Print / PDF */
+@media print {{
+  @page {{ margin:1.2cm; size:A4; }}
+  .filter-bar, .export-btn, .theme-toggle {{ display:none !important; }}
+  body {{ background:#fff !important; color:#000 !important; font-size:11px !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }}
+  .header {{ background:#f0f4ff !important; border-radius:0 !important; -webkit-print-color-adjust:exact; }}
+  .header h1, .header h1 span {{ color:#000 !important; -webkit-text-fill-color:#000 !important; }}
+  .header-sub, .gen-date {{ color:#444 !important; }}
+  .kpi-card, .camp-card, .creative-card, .chart-card, .reel-card, .alert-card {{ break-inside:avoid; background:#fff !important; border:1px solid #ccc !important; box-shadow:none !important; }}
+  .section-title {{ color:#333 !important; }}
+  .section-title::after {{ background:#ccc !important; }}
+  .kpi-value {{ color:#000 !important; }}
+  .camp-grid, .creative-grid, .reels-grid {{ grid-template-columns:1fr 1fr !important; }}
+  .kpi-grid {{ grid-template-columns:repeat(4,1fr) !important; }}
+  .charts-row {{ grid-template-columns:2fr 1fr !important; }}
+  .demo-charts-row {{ grid-template-columns:1fr 1fr !important; }}
+  .css-bar {{ background:#5b7fff !important; -webkit-print-color-adjust:exact; }}
+  .camp-metrics {{ background:#f5f5f5 !important; }}
+  .camp-metric {{ background:#fff !important; }}
+  .action-box {{ background:#f5f5f5 !important; border:1px solid #ddd !important; }}
+  [style*="color:var(--green)"] {{ color:#16a34a !important; }}
+  [style*="color:var(--accent)"] {{ color:#3b5bdb !important; }}
+  .kpi-card.blue-card {{ background:#1877f2 !important; -webkit-print-color-adjust:exact; }}
+  .kpi-card.blue-card * {{ color:#fff !important; }}
+  .wrap {{ padding:0 8px !important; }}
+}}
+
+/* Filter bar */
+.filter-bar { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 24px; margin-bottom:32px; box-shadow:var(--card-shadow); }
+.filter-inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.filter-group { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.filter-label { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-right:4px; }
+.filter-btn { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--text); cursor:pointer; transition:all .2s; font-family:inherit; }
+.filter-btn:hover { border-color:var(--accent); color:var(--accent); }
+.filter-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.filter-date { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-size:13px; color:var(--text); font-family:inherit; color-scheme:dark; }
+[data-theme="light"] .filter-date { color-scheme:light; }
+.filter-info { display:flex; align-items:center; gap:16px; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); flex-wrap:wrap; }
+#period-display { font-size:16px; font-weight:800; color:var(--accent); }
+
+/* Responsive */
+@media(max-width:900px) {
+  .wrap { padding:0 16px; }
+  .charts-row,.camp-grid,.creative-grid,.reels-grid,.alerts-grid,.demo-charts-row { grid-template-columns:1fr; }
+  .header-inner { flex-direction:column; }
+  .header-right { align-items:flex-start; text-align:left; }
+  .camp-metrics { grid-template-columns:repeat(2,1fr); }
+  .filter-inner { flex-direction:column; align-items:flex-start; }
+  .totals-bar { flex-direction:column; gap:16px; padding:18px 20px; }
+  .adsets-table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+}
+@media(max-width:600px) {
+  .wrap { padding:0 12px; }
+  .header h1 { font-size:24px; }
+  .period-label { font-size:18px; }
+  .kpi-grid { grid-template-columns:1fr 1fr; gap:10px; }
+  .kpi-card { padding:16px 14px; }
+  .kpi-value { font-size:22px; }
+  .kpi-sub { font-size:11px; }
+  .conv-grid { grid-template-columns:1fr 1fr; gap:10px; }
+  .conv-card { padding:14px 12px; }
+  .conv-val { font-size:20px; }
+  .creative-metrics { grid-template-columns:repeat(2,1fr); }
+  .reel-metrics { grid-template-columns:repeat(2,1fr); }
+  .camp-actions { grid-template-columns:repeat(2,1fr); }
+  .camp-spend { font-size:20px; }
+  .camp-metric-value { font-size:16px; }
+  .camp-metric { padding:12px 10px; }
+  .section-title { font-size:11px; letter-spacing:1.2px; }
+  .filter-bar { padding:14px 16px; }
+  .filter-btn { padding:6px 12px; font-size:12px; }
+  .filter-date { padding:6px 8px; font-size:12px; }
+  .totals-value { font-size:26px; }
+  .cm-val { font-size:15px; }
+  .reel-metric-val { font-size:15px; }
+  .action-val { font-size:16px; }
+  .chart-card { padding:16px 12px; }
+  .alert-card { padding:14px 16px; }
+}
+@media(max-width:380px) {
+  .kpi-grid { grid-template-columns:1fr; }
+  .conv-grid { grid-template-columns:1fr; }
+  .camp-metrics { grid-template-columns:1fr 1fr; }
+  .camp-actions { grid-template-columns:1fr 1fr; }
+  .reel-metrics { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <div class="chips">
+        <span class="chip agency">Potencializa Odonto</span>
+        <span class="chip meta">Meta Ads</span>
+        
+      </div>
+      <h1>CA <span>- Julia Farias</span></h1>
+
+    </div>
+    <div class="header-right">
+      <div style="font-size:15px;font-weight:800;color:var(--text);">CA - Julia Farias</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="export-btn" onclick="exportPDF()" title="Exportar PDF">&#128196; Exportar PDF</button>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema"><span id="theme-icon">🌙</span></button>
+      </div>
+      <div class="gen-date">Gerado em 05/06/2026 &middot; Meta Graph API v21.0 &middot; 25 dias</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+<div class="wrap">
+
+  <!-- FILTRO DE PERÍODO -->
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <div class="filter-group">
+        <span class="filter-label">Período</span>
+        <button class="filter-btn" id="filter-7d" onclick="applyFilter('last_7d')">7 dias</button>
+        <button class="filter-btn" id="filter-14d" onclick="applyFilter('last_14d')">14 dias</button>
+        <button class="filter-btn active" id="filter-30d" onclick="applyFilter('last_30d')">30 dias</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMO EXECUTIVO -->
+  <div class="section-title">Resumo Executivo <span id="kpi-period-label" style="font-weight:400;">&middot; Últimos 30 dias</span></div>
+
+  <!-- Linha 1: Valor investido | Alcance Total | Frequência | Impressões Totais -->
+  <div class="kpi-grid" style="margin-bottom:14px;">
+    <div class="kpi-card">
+      <div class="kpi-label">Valor investido</div>
+      <div class="kpi-value" id="kpi-val-spend" style="color:var(--accent);">R$ 10.527,93</div>
+      <div class="kpi-sub" id="kpi-sub-spend">~R$ 421,12/dia</div>
+    </div>
+    <div class="kpi-card g">
+      <div class="kpi-label">Alcance Total</div>
+      <div class="kpi-value" id="kpi-val-reach" style="color:var(--green);">583.763</div>
+      <div class="kpi-sub" id="kpi-sub-reach">pessoas únicas</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Frequência</div>
+      <div class="kpi-value" id="kpi-val-freq">3.07</div>
+      <div class="kpi-sub" id="kpi-sub-freq">média por pessoa</div>
+    </div>
+    <div class="kpi-card y">
+      <div class="kpi-label">Impressões Totais</div>
+      <div class="kpi-value" id="kpi-val-impressions">1.793.367</div>
+      <div class="kpi-sub" id="kpi-sub-impressions">exibições</div>
+    </div>
+  </div>
+
+  <!-- Linha 2: Total de cliques no link | CTR | Custo por Clique em Links | CPM médio -->
+  <div class="kpi-grid" style="margin-bottom:14px;">
+    <div class="kpi-card">
+      <div class="kpi-label">Total de cliques no link</div>
+      <div class="kpi-value" id="kpi-val-link-clicks">25.635</div>
+      <div class="kpi-sub" id="kpi-sub-link-clicks">26.640 cliques totais</div>
+    </div>
+    <div class="kpi-card g">
+      <div class="kpi-label">CTR (Taxa de cliques no link)</div>
+      <div class="kpi-value" id="kpi-val-ctr" style="color:var(--green);">1,43%</div>
+      <div class="kpi-sub" id="kpi-sub-ctr">taxa de clique</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Custo por Clique em Links</div>
+      <div class="kpi-value" id="kpi-val-cpc">R$ 0,41</div>
+      <div class="kpi-sub" id="kpi-sub-cpc">custo por clique</div>
+    </div>
+    <div class="kpi-card y">
+      <div class="kpi-label">CPM médio</div>
+      <div class="kpi-value" id="kpi-val-cpm">R$ 5,87</div>
+      <div class="kpi-sub" id="kpi-sub-cpm">custo por mil</div>
+    </div>
+  </div>
+
+  <!-- Linha 3: Conversas (cards azuis) -->
+  <div class="kpi-grid" style="margin-bottom:40px;">
+    <div class="kpi-card blue-card">
+      <div class="kpi-label">Conversas iniciadas por mensagem</div>
+      <div class="kpi-value" id="kpi-val-dms">406</div>
+      <div class="kpi-sub"></div>
+    </div>
+    <div class="kpi-card blue-card">
+      <div class="kpi-label">Conversas iniciadas por mensagem (Instagram)</div>
+      <div class="kpi-value">397</div>
+      <div class="kpi-sub"></div>
+    </div>
+    <div class="kpi-card blue-card">
+      <div class="kpi-label">Conversas iniciadas por mensagem (Facebook)</div>
+      <div class="kpi-value">6</div>
+      <div class="kpi-sub"></div>
+    </div>
+    <div class="kpi-card blue-card">
+      <div class="kpi-label">Custo por conversas iniciadas por mensagem</div>
+      <div class="kpi-value" id="kpi-val-cpm-conversa">R$ 25,93</div>
+      <div class="kpi-sub"></div>
+    </div>
+  </div>
+
+
+  <!-- CAMPANHAS -->
+  <div class="section-title">Performance por Campanha &middot; <span id="camp-count">9</span> campanhas</div>
+  <div class="camp-grid" id="campCardsContainer"></div>
+
+  <!-- GRÁFICOS DEMOGRÁFICOS -->
+  <div class="section-title">Alcance e Conversas por Audiência</div>
+  <div id="demo-7d" style="display:none"><div class="demo-charts-row"><div class="demo-chart">
+      <h3>Alcance por idade e Conversas iniciadas</h3>
+      <div class="demo-bars">
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">72.393</div>
+              <div class="demo-bar demo-reach" style="height:101px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">7</div>
+              <div class="demo-bar demo-conv" style="height:37px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">18-24</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">114.488</div>
+              <div class="demo-bar demo-reach" style="height:160px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">30</div>
+              <div class="demo-bar demo-conv" style="height:160px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">25-34</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">63.892</div>
+              <div class="demo-bar demo-reach" style="height:89px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">24</div>
+              <div class="demo-bar demo-conv" style="height:128px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">35-44</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">21.505</div>
+              <div class="demo-bar demo-reach" style="height:30px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">10</div>
+              <div class="demo-bar demo-conv" style="height:53px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">45-54</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">966</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">3</div>
+              <div class="demo-bar demo-conv" style="height:16px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">55-64</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">91</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">1</div>
+              <div class="demo-bar demo-conv" style="height:5px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">65+</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">14</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">1</div>
+              <div class="demo-bar demo-conv" style="height:5px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Unknown</div>
+        </div></div>
+      <div class="demo-legend">
+        <span><i style="background:#22c55e;border-radius:2px;"></i> Alcance</span>
+        <span><i style="background:#1877f2;border-radius:2px;"></i> Conversas iniciadas por mensagem</span>
+      </div>
+    </div><div class="demo-chart">
+      <h3>Alcance por gênero e Conversas iniciadas</h3>
+      <div class="demo-bars">
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">157.961</div>
+              <div class="demo-bar demo-reach" style="height:160px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">71</div>
+              <div class="demo-bar demo-conv" style="height:160px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Feminino</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">118.853</div>
+              <div class="demo-bar demo-reach" style="height:120px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">4</div>
+              <div class="demo-bar demo-conv" style="height:9px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Masculino</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">506</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">1</div>
+              <div class="demo-bar demo-conv" style="height:4px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Desconhecido</div>
+        </div></div>
+      <div class="demo-legend">
+        <span><i style="background:#22c55e;border-radius:2px;"></i> Alcance</span>
+        <span><i style="background:#1877f2;border-radius:2px;"></i> Conversas iniciadas por mensagem</span>
+      </div>
+    </div></div></div>
+  <div id="demo-14d" style="display:none"><div class="demo-charts-row"><div class="demo-chart">
+      <h3>Alcance por idade e Conversas iniciadas</h3>
+      <div class="demo-bars">
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">106.366</div>
+              <div class="demo-bar demo-reach" style="height:107px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">8</div>
+              <div class="demo-bar demo-conv" style="height:29px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">18-24</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">158.352</div>
+              <div class="demo-bar demo-reach" style="height:160px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">43</div>
+              <div class="demo-bar demo-conv" style="height:160px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">25-34</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">90.005</div>
+              <div class="demo-bar demo-reach" style="height:90px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">38</div>
+              <div class="demo-bar demo-conv" style="height:141px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">35-44</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">31.155</div>
+              <div class="demo-bar demo-reach" style="height:31px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">24</div>
+              <div class="demo-bar demo-conv" style="height:89px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">45-54</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">1.452</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">10</div>
+              <div class="demo-bar demo-conv" style="height:37px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">55-64</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">122</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">2</div>
+              <div class="demo-bar demo-conv" style="height:7px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">65+</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">24</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">1</div>
+              <div class="demo-bar demo-conv" style="height:4px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Unknown</div>
+        </div></div>
+      <div class="demo-legend">
+        <span><i style="background:#22c55e;border-radius:2px;"></i> Alcance</span>
+        <span><i style="background:#1877f2;border-radius:2px;"></i> Conversas iniciadas por mensagem</span>
+      </div>
+    </div><div class="demo-chart">
+      <h3>Alcance por gênero e Conversas iniciadas</h3>
+      <div class="demo-bars">
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">230.571</div>
+              <div class="demo-bar demo-reach" style="height:160px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">116</div>
+              <div class="demo-bar demo-conv" style="height:160px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Feminino</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">152.827</div>
+              <div class="demo-bar demo-reach" style="height:106px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">9</div>
+              <div class="demo-bar demo-conv" style="height:12px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Masculino</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">721</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">1</div>
+              <div class="demo-bar demo-conv" style="height:4px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Desconhecido</div>
+        </div></div>
+      <div class="demo-legend">
+        <span><i style="background:#22c55e;border-radius:2px;"></i> Alcance</span>
+        <span><i style="background:#1877f2;border-radius:2px;"></i> Conversas iniciadas por mensagem</span>
+      </div>
+    </div></div></div>
+  <div id="demo-30d"><div class="demo-charts-row"><div class="demo-chart">
+      <h3>Alcance por idade e Conversas iniciadas</h3>
+      <div class="demo-bars">
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">157.915</div>
+              <div class="demo-bar demo-reach" style="height:104px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">39</div>
+              <div class="demo-bar demo-conv" style="height:42px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">18-24</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">241.590</div>
+              <div class="demo-bar demo-reach" style="height:160px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">147</div>
+              <div class="demo-bar demo-conv" style="height:160px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">25-34</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">137.033</div>
+              <div class="demo-bar demo-reach" style="height:90px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">112</div>
+              <div class="demo-bar demo-conv" style="height:121px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">35-44</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">47.744</div>
+              <div class="demo-bar demo-reach" style="height:31px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">71</div>
+              <div class="demo-bar demo-conv" style="height:77px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">45-54</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">2.704</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">34</div>
+              <div class="demo-bar demo-conv" style="height:37px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">55-64</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">211</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">2</div>
+              <div class="demo-bar demo-conv" style="height:4px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">65+</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">55</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">1</div>
+              <div class="demo-bar demo-conv" style="height:4px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Unknown</div>
+        </div></div>
+      <div class="demo-legend">
+        <span><i style="background:#22c55e;border-radius:2px;"></i> Alcance</span>
+        <span><i style="background:#1877f2;border-radius:2px;"></i> Conversas iniciadas por mensagem</span>
+      </div>
+    </div><div class="demo-chart">
+      <h3>Alcance por gênero e Conversas iniciadas</h3>
+      <div class="demo-bars">
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">350.640</div>
+              <div class="demo-bar demo-reach" style="height:160px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">382</div>
+              <div class="demo-bar demo-conv" style="height:160px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Feminino</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">233.030</div>
+              <div class="demo-bar demo-reach" style="height:106px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">23</div>
+              <div class="demo-bar demo-conv" style="height:9px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Masculino</div>
+        </div>
+        <div class="demo-group">
+          <div class="demo-group-bars">
+            <div class="demo-bar-wrap">
+              <div class="demo-val">1.211</div>
+              <div class="demo-bar demo-reach" style="height:4px;"></div>
+            </div>
+            <div class="demo-bar-wrap">
+              <div class="demo-val" style="color:#60a5fa;">1</div>
+              <div class="demo-bar demo-conv" style="height:4px;"></div>
+            </div>
+          </div>
+          <div class="demo-label">Desconhecido</div>
+        </div></div>
+      <div class="demo-legend">
+        <span><i style="background:#22c55e;border-radius:2px;"></i> Alcance</span>
+        <span><i style="background:#1877f2;border-radius:2px;"></i> Conversas iniciadas por mensagem</span>
+      </div>
+    </div></div></div>
+
+  <!-- CRIATIVOS -->
+  <div class="section-title">Melhores Criativos &middot; 10 de 50 anúncios &middot; por resultado</div>
+  <div style="font-size:12px;color:var(--muted);margin:-12px 0 16px;padding:8px 14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent);">
+    Os valores por anúncio refletem a <strong>atribuição individual</strong> do Meta — a soma dos criativos pode ser maior que o total da conta, pois a mesma conversão pode ser atribuída a mais de um anúncio simultaneamente (comportamento padrão da API Meta).
+  </div>
+  <div class="creative-grid">
+    
+    <div class="creative-card" data-ad-id="120245184239310731">
+      <div class="creative-header">
+        <div class="camp-path">TRÁFEGO PARA O PERFIL [RISE] › 01/12/25 [SALVADOR] / 18A50 / IG</div>
+        <div class="ad-name">AD-REELS IAN <span class="status-badge active">Ativo</span></div>
+      </div>
+      <div class="creative-body">
+        <img class="creative-thumb" src="https://scontent.fgyn23-1.fna.fbcdn.net/v/t15.5256-10/696396880_1950576539666313_372440304064543393_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=HCyaKhBdzvYQ7kNvwGNXI-m&_nc_oc=AdryPeEQZoDLiQbCR_nTMBGbiETL4mKgFZAGvYDsivYy63TKzW22S8WN25jRf_XxCxjtVKjnD9KxlgzgA6oZ65OM&_nc_zt=23&_nc_ht=scontent.fgyn23-1.fna&edm=AOgd6ZUEAAAA&_nc_gid=_E5otTHFMV6CyhSAUeFGVg&_nc_tpa=Q5bMBQF_TeBRITSRDKJVNmQkJY2T53SXM7IH67RFXu20XHNd4baANbuv36L7ixjNhOMdQ43iJzpvJrkfNg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Af9jxJuM1Y-113wM0Jvg8zFc44i74eiL4XRIEM_KLcU2tQ&oe=6A288D98" alt="Criativo" onerror="this.style.display='none'">
+        <div class="creative-caption">"Existem transformações que vão muito mais além do que o sorriso 😁 🤍"</div>
+        <div style="font-size:12px;color:var(--accent);font-weight:700;margin-bottom:8px;">CTA: View Instagram Profile</div>
+        <div class="creative-links"><a href="https://www.facebook.com/386637221202837/posts/1950576509666316" target="_blank" style="color:#1877f2;">Ver no Facebook ↗</a><a href="https://www.instagram.com/p/DYQA5n5ANc0/" target="_blank" style="color:#e1306c;">Ver no Instagram ↗</a></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 437,95</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">52.773</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">1.559</div><div class="cm-label" id="ad-res-label-120245184239310731">Cliques no link</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">2,30%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+      <div class="retention-funnel">
+        <div class="retention-title">Retenção de Vídeo</div>
+        <div class="ret-subtitle">66.486 impressões totais</div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 25%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:7.2%;background:#6c5ce7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">4.793</span>
+            <span class="ret-pct">7.2%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 50%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:3.2%;background:#a855f7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">2.139</span>
+            <span class="ret-pct">3.2%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 75%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#f59e0b;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">1.242</span>
+            <span class="ret-pct">1.9%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 100%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#22c55e;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">558</span>
+            <span class="ret-pct">0.8%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="creative-card" data-ad-id="120237920086150731">
+      <div class="creative-header">
+        <div class="camp-path">TRÁFEGO PARA O PERFIL [RISE] › 01/12/25 [SERRINHA] / 18A50 / IG</div>
+        <div class="ad-name">AD-REELS PACIENTE 3 <span class="status-badge paused">UNKNOWN</span></div>
+      </div>
+      <div class="creative-body">
+        
+        <div class="creative-caption">""</div>
+        
+        <div class="creative-links"></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 341,28</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">54.618</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">1.094</div><div class="cm-label" id="ad-res-label-120237920086150731">Cliques no link</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">1,27%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+      <div class="retention-funnel">
+        <div class="retention-title">Retenção de Vídeo</div>
+        <div class="ret-subtitle">84.198 impressões totais</div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 25%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:3.3%;background:#6c5ce7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">2.760</span>
+            <span class="ret-pct">3.3%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 50%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.1%;background:#a855f7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">1.799</span>
+            <span class="ret-pct">2.1%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 75%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#f59e0b;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">893</span>
+            <span class="ret-pct">1.1%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 100%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#22c55e;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">469</span>
+            <span class="ret-pct">0.6%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="creative-card" data-ad-id="120242367790450731">
+      <div class="creative-header">
+        <div class="camp-path">TRÁFEGO PARA O PERFIL [RISE] › 01/12/25 [SERRINHA] / 18A50 / IG</div>
+        <div class="ad-name">AD-REELS ANALISE DE CASO <span class="status-badge paused">UNKNOWN</span></div>
+      </div>
+      <div class="creative-body">
+        
+        <div class="creative-caption">""</div>
+        
+        <div class="creative-links"></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 102,40</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">23.157</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">360</div><div class="cm-label" id="ad-res-label-120242367790450731">Cliques no link</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">1,06%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+      <div class="retention-funnel">
+        <div class="retention-title">Retenção de Vídeo</div>
+        <div class="ret-subtitle">33.554 impressões totais</div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 25%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#6c5ce7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">557</span>
+            <span class="ret-pct">1.7%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 50%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#a855f7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">297</span>
+            <span class="ret-pct">0.9%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 75%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#f59e0b;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">219</span>
+            <span class="ret-pct">0.7%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 100%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#22c55e;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">185</span>
+            <span class="ret-pct">0.6%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="creative-card" data-ad-id="120242367644850731">
+      <div class="creative-header">
+        <div class="camp-path">TRÁFEGO PARA O PERFIL [RISE] › 20-03-26 [CID VIZINHAS]  18A50 / IG</div>
+        <div class="ad-name">AD-REELS RESULTADO <span class="status-badge active">Ativo</span></div>
+      </div>
+      <div class="creative-body">
+        <img class="creative-thumb" src="https://scontent.fgyn23-1.fna.fbcdn.net/v/t15.5256-10/652055690_1628736278370740_4067625680166019297_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=C33dTWZJ1fYQ7kNvwGBqLTZ&_nc_oc=AdoE6Gb2CxZ3vwBQmtazF5AlxfO4oJ5RiFzpuuieOzSBxhW4Ac_ln7k8G9okQ8Yc5tkUrkTz3_pZMvouTqvvRYlX&_nc_zt=23&_nc_ht=scontent.fgyn23-1.fna&edm=AOgd6ZUEAAAA&_nc_gid=_E5otTHFMV6CyhSAUeFGVg&_nc_tpa=Q5bMBQFnIlcQB8O_FsHaiTYqZYTWx6hV3HfL7bN76Tss7GIgBXGtn-tnhE-yfPPbOY8CemCUwVDuHqqlaw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Af-u4AZRmUA3_6asemPrsE7KYjFJEBDrtBD9Y3ecVEaTsA&oe=6A288356" alt="Criativo" onerror="this.style.display='none'">
+        <div class="creative-caption">"Um resultado de tirar o fôlego 😮‍💨💖"</div>
+        <div style="font-size:12px;color:var(--accent);font-weight:700;margin-bottom:8px;">CTA: View Instagram Profile</div>
+        <div class="creative-links"><a href="https://www.facebook.com/386637221202837/posts/1628736251704076" target="_blank" style="color:#1877f2;">Ver no Facebook ↗</a><a href="https://www.instagram.com/p/DWGyXGSgJ18/" target="_blank" style="color:#e1306c;">Ver no Instagram ↗</a></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 125,52</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">23.233</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">298</div><div class="cm-label" id="ad-res-label-120242367644850731">Cliques no link</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">0,99%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+      <div class="retention-funnel">
+        <div class="retention-title">Retenção de Vídeo</div>
+        <div class="ret-subtitle">29.909 impressões totais</div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 25%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:19.8%;background:#6c5ce7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">5.928</span>
+            <span class="ret-pct">19.8%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 50%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:10.8%;background:#a855f7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">3.235</span>
+            <span class="ret-pct">10.8%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 75%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:5.0%;background:#f59e0b;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">1.496</span>
+            <span class="ret-pct">5.0%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 100%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:3.3%;background:#22c55e;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">997</span>
+            <span class="ret-pct">3.3%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="creative-card" data-ad-id="120242367644840731">
+      <div class="creative-header">
+        <div class="camp-path">TRÁFEGO PARA O PERFIL [RISE] › 20-03-26 [CID VIZINHAS]  18A50 / IG</div>
+        <div class="ad-name">AD-REELS PACIENTE 3 <span class="status-badge active">Ativo</span></div>
+      </div>
+      <div class="creative-body">
+        <img class="creative-thumb" src="https://scontent.fgyn23-1.fna.fbcdn.net/v/t15.5256-10/650737642_915153541244963_7229135447784626965_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=YdljwsAPD2AQ7kNvwERc9-A&_nc_oc=AdrCHL5XxNMckGgvOTgSJex7_uiz_z40TsSED0eOwaEW9EXBGMfLxG7m_eMSw0O69OuCWULYwv5JGOCi4Ml4Gzib&_nc_zt=23&_nc_ht=scontent.fgyn23-1.fna&edm=AOgd6ZUEAAAA&_nc_gid=_E5otTHFMV6CyhSAUeFGVg&_nc_tpa=Q5bMBQECI629KFlMprNaLyJHe5oqHcUDS-ftQ-Ic3wb82yYn8TpKgSuSm8TjHIbciE0WiYpgI2GPzMmGaw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Af_2JGYVjQdalIsDQtTiKwbz_Nh84BcIgIG8p4VHl__xfw&oe=6A28ABC8" alt="Criativo" onerror="this.style.display='none'">
+        <div class="creative-caption">"Escuta só esse relato 🤍✨"</div>
+        <div style="font-size:12px;color:var(--accent);font-weight:700;margin-bottom:8px;">CTA: View Instagram Profile</div>
+        <div class="creative-links"><a href="https://www.facebook.com/386637221202837/posts/915153511244966" target="_blank" style="color:#1877f2;">Ver no Facebook ↗</a><a href="https://www.instagram.com/p/DRurKmGACoV/" target="_blank" style="color:#e1306c;">Ver no Instagram ↗</a></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 69,10</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">12.159</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">180</div><div class="cm-label" id="ad-res-label-120242367644840731">Cliques no link</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">1,18%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+      <div class="retention-funnel">
+        <div class="retention-title">Retenção de Vídeo</div>
+        <div class="ret-subtitle">15.144 impressões totais</div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 25%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:3.5%;background:#6c5ce7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">537</span>
+            <span class="ret-pct">3.5%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 50%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.7%;background:#a855f7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">411</span>
+            <span class="ret-pct">2.7%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 75%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#f59e0b;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">217</span>
+            <span class="ret-pct">1.4%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 100%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#22c55e;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">124</span>
+            <span class="ret-pct">0.8%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="creative-card" data-ad-id="120242367790430731">
+      <div class="creative-header">
+        <div class="camp-path">TRÁFEGO PARA O PERFIL [RISE] › 01/12/25 [SERRINHA] / 18A50 / IG</div>
+        <div class="ad-name">AD-REELS ESPAÇO ENTRE OS DENTES <span class="status-badge paused">UNKNOWN</span></div>
+      </div>
+      <div class="creative-body">
+        
+        <div class="creative-caption">""</div>
+        
+        <div class="creative-links"></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 41,11</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">9.992</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">135</div><div class="cm-label" id="ad-res-label-120242367790430731">Cliques no link</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">1,11%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+      <div class="retention-funnel">
+        <div class="retention-title">Retenção de Vídeo</div>
+        <div class="ret-subtitle">12.094 impressões totais</div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 25%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:4.2%;background:#6c5ce7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">507</span>
+            <span class="ret-pct">4.2%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 50%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.5%;background:#a855f7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">302</span>
+            <span class="ret-pct">2.5%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 75%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#f59e0b;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">170</span>
+            <span class="ret-pct">1.4%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 100%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.0%;background:#22c55e;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">84</span>
+            <span class="ret-pct">0.7%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="creative-card" data-ad-id="120245172171040731">
+      <div class="creative-header">
+        <div class="camp-path">[RISE] VAGA DE EMPREGO › 12-05 [SALVADOR] [ML] [22A40]</div>
+        <div class="ad-name">AD-IM AUX BUCAL <span class="status-badge paused">CAMPAIGN_PAUSED</span></div>
+      </div>
+      <div class="creative-body">
+        <img class="creative-thumb" src="https://scontent.fgyn23-1.fna.fbcdn.net/v/t45.1600-4/697725190_1702326570776350_3647726050466159811_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=z_NC3NMvaykQ7kNvwGhsTit&_nc_oc=Adrjq7nOvWmlnVYB38A6uHEJziwNxoT_2atrcEFakojT1eh_Y6P6XwAwuvtyL9F-Kv-3mIlolzblOZi30ulGH61-&_nc_zt=1&_nc_ht=scontent.fgyn23-1.fna&edm=AOgd6ZUEAAAA&_nc_gid=_E5otTHFMV6CyhSAUeFGVg&_nc_tpa=Q5bMBQF_kboEKSScUCeGOdqta4_8tWHSszojUdBVUqa-rpiLJM1FCKrqa_1p-_whRvoAv-4HpgnC_xOWxQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_Af8V3GCN2G3MPXPsN2A-Np8XfH4kySnBW6drCYYcg4T3XQ&oe=6A28A5B0" alt="Criativo" onerror="this.style.display='none'">
+        <div class="creative-caption">""</div>
+        
+        <div class="creative-links"><a href="https://www.facebook.com/726946947163964/posts/122171653436922915" target="_blank" style="color:#1877f2;">Ver no Facebook ↗</a><a href="https://www.instagram.com/p/DYPj39iAObm/" target="_blank" style="color:#e1306c;">Ver no Instagram ↗</a></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 74,66</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">6.170</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">83</div><div class="cm-label" id="ad-res-label-120245172171040731">Conversas iniciadas</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">4,62%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+    </div>
+    <div class="creative-card" data-ad-id="120245242565950731">
+      <div class="creative-header">
+        <div class="camp-path">[RISE] VAGA DE EMPREGO [ENG] › 13-05 [SALVADOR] [ML] [22A40]</div>
+        <div class="ad-name">AD-IM AUX BUCAL <span class="status-badge paused">CAMPAIGN_PAUSED</span></div>
+      </div>
+      <div class="creative-body">
+        <img class="creative-thumb" src="https://external.fgyn23-1.fna.fbcdn.net/emg1/v/t13/13225567781636213916?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIlYCHyeNnz3gODwnavr4vIbTFO4dRO58SSiTGSKPUFIslC5xtaQ7m_tTDAJhYkytakaYCc1c0Hc2z77O2aWTlyK3sAo2gBr-0j-zb9silBXj8NoRxVxp4HMP5EViR8CFh3nP-HkiRiIfPWiDSFs7OV&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AOgd6ZUEAAAA&_nc_gid=_E5otTHFMV6CyhSAUeFGVg&_nc_oc=Ado46fGXigBKOrVJvaHF33o4S2iNQO_n6d5NwX5OTx5QrOaInRq5gqZcjjLpNSA3GHa1TFWodAiD1WygDC2MLdHk&ccb=13-1&oh=06_Q3-_AQxQKm9FCdSAdujafZRP8RTbnlY2bXyPzozrY5dEYMEa&oe=6A249E96&_nc_sid=58080a" alt="Criativo" onerror="this.style.display='none'">
+        <div class="creative-caption">"Faça parte de uma equipe que valoriza excelência, organização e crescimento profissional!"</div>
+        <div style="font-size:12px;color:var(--accent);font-weight:700;margin-bottom:8px;">CTA: Whatsapp Message</div>
+        <div class="creative-links"><a href="https://www.facebook.com/726946947163964/posts/122171825750922915" target="_blank" style="color:#1877f2;">Ver no Facebook ↗</a><a href="https://www.instagram.com/p/DYSbEsHgLuR/" target="_blank" style="color:#e1306c;">Ver no Instagram ↗</a></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 70,96</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">6.157</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">63</div><div class="cm-label" id="ad-res-label-120245242565950731">Conversas iniciadas</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">3,90%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+    </div>
+    <div class="creative-card" data-ad-id="120244384954010731">
+      <div class="creative-header">
+        <div class="camp-path">[RISE] VENDA [ CONQUISTA] [ENG] › 28-04-26 CONQUISTA / 22+ / FC E IG</div>
+        <div class="ad-name">AD-IM 02 <span class="status-badge active">Ativo</span></div>
+      </div>
+      <div class="creative-body">
+        <img class="creative-thumb" src="https://scontent.fgyn23-1.fna.fbcdn.net/v/t45.1600-4/676691876_1689624952046512_8889245378393668918_n.png?_nc_cat=106&ccb=1-7&_nc_ohc=IlJN2qoeRRkQ7kNvwF_6TAm&_nc_oc=AdqKUud-gLePFHnA6626kXcLXv66Ze-erVcKFALDgPSp1qa6elGOYq7FqJXgLveycWgH2jIG5CcG7QPWwZlxhuNM&_nc_zt=1&_nc_ht=scontent.fgyn23-1.fna&edm=AOgd6ZUEAAAA&_nc_gid=_E5otTHFMV6CyhSAUeFGVg&_nc_tpa=Q5bMBQEUKJKphzKzFPv_JlEywlxWVm64WDQEp52BrSW8hm08Iw5sSOxHm_xcPuGoNfluRlxOSuw48tb4Iw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_Af8tLbMgvbMrZGvYbXU4CwwfqZ2Tjt2ElBWhglFXSzEZcg&oe=6A288944" alt="Criativo" onerror="this.style.display='none'">
+        <div class="creative-caption">""</div>
+        
+        <div class="creative-links"><a href="https://www.facebook.com/726946947163964/posts/122169463598922915" target="_blank" style="color:#1877f2;">Ver no Facebook ↗</a><a href="https://www.instagram.com/p/DXqA8kUAAlz/" target="_blank" style="color:#e1306c;">Ver no Instagram ↗</a></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 376,24</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">6.856</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">35</div><div class="cm-label" id="ad-res-label-120244384954010731">Conversas iniciadas</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">1,23%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+    </div>
+    <div class="creative-card" data-ad-id="120242848029140731">
+      <div class="creative-header">
+        <div class="camp-path">LENTES EM RESINA [SALVADOR] [RISE] [CBO] [VD-WPP] › 30-03-26 [ML] MIX SEMELHANTE / 25A60 / IG</div>
+        <div class="ad-name">AD-VD Pq dentista não faz faceta? <span class="status-badge active">Ativo</span></div>
+      </div>
+      <div class="creative-body">
+        <img class="creative-thumb" src="https://scontent.fgyn23-1.fna.fbcdn.net/v/t15.5256-10/663205541_1684221766361521_7468997477419997921_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=WSbaycWH7IUQ7kNvwGfhNey&_nc_oc=Adpk-EzsasCRa4y_IZ5lec6hBsIiES6amSyCHpQGi31svm6nSAqjlAX6IlRDsErgoCh0ADutX9E11JoU9BkI0qMW&_nc_zt=23&_nc_ht=scontent.fgyn23-1.fna&edm=AOgd6ZUEAAAA&_nc_gid=_E5otTHFMV6CyhSAUeFGVg&_nc_tpa=Q5bMBQFfhsa2LTLwiLPqNLjrEJgR855jtyoVQBXLvn7DvWn9yLK1wrpMFGk7LiPI2MYwPjaKjqAd4NkpHw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af_E-gWMQT-2-AUkYZECjD8F7W3s_9ZkPBkbk9uvCYp2ug&oe=6A2896C5" alt="Criativo" onerror="this.style.display='none'">
+        <div class="creative-caption">"Quem disse que dentista não faz faceta? 👀✨"</div>
+        <div style="font-size:12px;color:var(--accent);font-weight:700;margin-bottom:8px;">CTA: Whatsapp Message</div>
+        <div class="creative-links"><a href="https://www.facebook.com/386637221202837/posts/122187886358489498" target="_blank" style="color:#1877f2;">Ver no Facebook ↗</a><a href="https://www.instagram.com/p/DWhf8xvgB0l/" target="_blank" style="color:#e1306c;">Ver no Instagram ↗</a></div>
+      </div>
+      <div class="creative-metrics">
+        <div class="cm-item"><div class="cm-val" data-ad-metric="spend" style="color:var(--accent);">R$ 311,45</div><div class="cm-label">Gasto</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="reach">5.974</div><div class="cm-label">Alcance</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="resultado" style="color:var(--green);">27</div><div class="cm-label" id="ad-res-label-120242848029140731">Conversas iniciadas</div></div>
+        <div class="cm-item"><div class="cm-val" data-ad-metric="ctr" style="color:var(--accent2);">1,45%</div><div class="cm-label">CTR</div></div>
+      </div>
+      
+      <div class="retention-funnel">
+        <div class="retention-title">Retenção de Vídeo</div>
+        <div class="ret-subtitle">8.228 impressões totais</div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 25%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:9.7%;background:#6c5ce7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">798</span>
+            <span class="ret-pct">9.7%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 50%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:6.9%;background:#a855f7;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">571</span>
+            <span class="ret-pct">6.9%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 75%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:5.7%;background:#f59e0b;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">473</span>
+            <span class="ret-pct">5.7%</span>
+          </div>
+        </div>
+        
+        <div class="ret-row">
+          <div class="ret-row-label">Assistiram 100%</div>
+          <div class="ret-row-bar-wrap">
+            <div class="ret-row-bar" style="width:2.6%;background:#22c55e;"></div>
+          </div>
+          <div class="ret-row-nums">
+            <span class="ret-count">216</span>
+            <span class="ret-pct">2.6%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div><strong>CA - Julia Farias</strong> &middot; Potencializa Odonto &middot; Meta Ads</div>
+    <div style="text-align:right;">
+      Dados: Meta Graph API v21.0 &middot; Gerado em 05/06/2026<br>
+      6 Mai – 4 Jun 2026 &middot; 25 dias &middot; 9 campanhas  
+    </div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+// ═══ DADOS EMBARCADOS PARA FILTRO INTERATIVO ═══
+const DAILY_DATA = [{"date": "2026-05-06", "spend": 367.16, "impressions": 78188, "clicks": 850, "reach": 65494, "link_clicks": 825, "video_views": 9918, "saves": 9, "dms": 12, "leads": 0, "reactions": 183, "comments_count": 0, "landing_page_views": 0}, {"date": "2026-05-07", "spend": 329.02, "impressions": 66123, "clicks": 859, "reach": 56244, "link_clicks": 852, "video_views": 8616, "saves": 8, "dms": 6, "leads": 0, "reactions": 150, "comments_count": 2, "landing_page_views": 0}, {"date": "2026-05-08", "spend": 330.83, "impressions": 56581, "clicks": 806, "reach": 49612, "link_clicks": 789, "video_views": 8088, "saves": 8, "dms": 7, "leads": 0, "reactions": 179, "comments_count": 2, "landing_page_views": 0}, {"date": "2026-05-09", "spend": 321.81, "impressions": 58331, "clicks": 826, "reach": 49236, "link_clicks": 810, "video_views": 7764, "saves": 12, "dms": 6, "leads": 0, "reactions": 119, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-10", "spend": 362.3, "impressions": 67873, "clicks": 945, "reach": 54904, "link_clicks": 941, "video_views": 9223, "saves": 8, "dms": 7, "leads": 0, "reactions": 174, "comments_count": 5, "landing_page_views": 0}, {"date": "2026-05-11", "spend": 363.03, "impressions": 65553, "clicks": 881, "reach": 56057, "link_clicks": 856, "video_views": 9717, "saves": 8, "dms": 4, "leads": 0, "reactions": 156, "comments_count": 0, "landing_page_views": 0}, {"date": "2026-05-12", "spend": 439.25, "impressions": 78520, "clicks": 1364, "reach": 65303, "link_clicks": 1301, "video_views": 13597, "saves": 17, "dms": 24, "leads": 0, "reactions": 217, "comments_count": 2, "landing_page_views": 0}, {"date": "2026-05-13", "spend": 378.79, "impressions": 54607, "clicks": 1294, "reach": 42132, "link_clicks": 1244, "video_views": 11878, "saves": 7, "dms": 18, "leads": 0, "reactions": 175, "comments_count": 0, "landing_page_views": 0}, {"date": "2026-05-14", "spend": 299.64, "impressions": 44142, "clicks": 800, "reach": 38427, "link_clicks": 731, "video_views": 7924, "saves": 9, "dms": 17, "leads": 0, "reactions": 121, "comments_count": 4, "landing_page_views": 0}, {"date": "2026-05-15", "spend": 335.33, "impressions": 54002, "clicks": 1004, "reach": 47403, "link_clicks": 898, "video_views": 10695, "saves": 10, "dms": 34, "leads": 0, "reactions": 164, "comments_count": 2, "landing_page_views": 0}, {"date": "2026-05-16", "spend": 312.42, "impressions": 49875, "clicks": 886, "reach": 43830, "link_clicks": 805, "video_views": 9641, "saves": 5, "dms": 28, "leads": 0, "reactions": 123, "comments_count": 2, "landing_page_views": 0}, {"date": "2026-05-17", "spend": 361.98, "impressions": 63094, "clicks": 1051, "reach": 56127, "link_clicks": 977, "video_views": 10789, "saves": 12, "dms": 25, "leads": 0, "reactions": 170, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-18", "spend": 394.34, "impressions": 64930, "clicks": 1017, "reach": 55248, "link_clicks": 950, "video_views": 11598, "saves": 15, "dms": 34, "leads": 2, "reactions": 216, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-19", "spend": 409.18, "impressions": 67881, "clicks": 1019, "reach": 60186, "link_clicks": 928, "video_views": 11964, "saves": 14, "dms": 38, "leads": 0, "reactions": 246, "comments_count": 0, "landing_page_views": 0}, {"date": "2026-05-20", "spend": 341.16, "impressions": 56473, "clicks": 831, "reach": 48267, "link_clicks": 800, "video_views": 10762, "saves": 5, "dms": 16, "leads": 1, "reactions": 204, "comments_count": 2, "landing_page_views": 0}, {"date": "2026-05-21", "spend": 325.69, "impressions": 52124, "clicks": 807, "reach": 45339, "link_clicks": 766, "video_views": 10278, "saves": 8, "dms": 4, "leads": 0, "reactions": 229, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-22", "spend": 332.13, "impressions": 57175, "clicks": 764, "reach": 51571, "link_clicks": 754, "video_views": 10567, "saves": 5, "dms": 9, "leads": 0, "reactions": 167, "comments_count": 0, "landing_page_views": 0}, {"date": "2026-05-23", "spend": 316.37, "impressions": 55923, "clicks": 830, "reach": 50507, "link_clicks": 816, "video_views": 11165, "saves": 12, "dms": 9, "leads": 0, "reactions": 213, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-24", "spend": 359.15, "impressions": 61597, "clicks": 845, "reach": 51671, "link_clicks": 832, "video_views": 11362, "saves": 12, "dms": 5, "leads": 0, "reactions": 202, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-25", "spend": 356.81, "impressions": 60801, "clicks": 826, "reach": 53631, "link_clicks": 795, "video_views": 10645, "saves": 10, "dms": 8, "leads": 0, "reactions": 204, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-26", "spend": 363.14, "impressions": 58132, "clicks": 838, "reach": 52749, "link_clicks": 828, "video_views": 10369, "saves": 11, "dms": 15, "leads": 0, "reactions": 197, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-27", "spend": 296.06, "impressions": 46584, "clicks": 653, "reach": 41289, "link_clicks": 628, "video_views": 8366, "saves": 3, "dms": 4, "leads": 2, "reactions": 167, "comments_count": 1, "landing_page_views": 0}, {"date": "2026-05-28", "spend": 0.0, "impressions": 0, "clicks": 0, "reach": 0, "link_clicks": 0, "video_views": 0, "saves": 0, "dms": 0, "leads": 0, "reactions": 0, "comments_count": 0, "landing_page_views": 0}, {"date": "2026-05-29", "spend": 462.2, "impressions": 73299, "clicks": 1022, "reach": 65778, "link_clicks": 1015, "video_views": 10480, "saves": 7, "dms": 5, "leads": 0, "reactions": 93, "comments_count": 2, "landing_page_views": 0}, {"date": "2026-05-30", "spend": 568.53, "impressions": 89529, "clicks": 1207, "reach": 76461, "link_clicks": 1187, "video_views": 11409, "saves": 6, "dms": 8, "leads": 0, "reactions": 99, "comments_count": 4, "landing_page_views": 0}];
+const ANTERIOR_ACCOUNT = {"spend": 10647.59, "impressions": 1996128, "clicks": 21680, "reach": 636009, "ctr": 1.086103, "cpc": 0.491125, "cpm": 5.334122};
+const FULL_PERIOD = { since: '2026-05-06', until: '2026-06-04', dias: 30 };
+const CAMPS_DATA = {"last_7d": [{"campaign_name": "TRÁFEGO PARA O PERFIL [RISE]", "spend": 1949.64, "reach": 261347, "ctr": 1.48, "cpc": 0.31, "frequency": 1.612178, "actions": [{"action_type": "page_engagement", "value": "68149", "1d_view": "61138"}, {"action_type": "post_engagement", "value": "68149", "1d_view": "61138"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "6", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "6", "1d_view": "1"}, {"action_type": "video_view", "value": "61184", "1d_view": "61138"}, {"action_type": "onsite_conversion.messaging_block", "value": "10"}, {"action_type": "link_click", "value": "6225"}, {"action_type": "post_reaction", "value": "665"}, {"action_type": "onsite_conversion.post_unlike", "value": "76"}, {"action_type": "post_interaction_gross", "value": "740"}, {"action_type": "comment", "value": "7"}, {"action_type": "post_interaction_net", "value": "817"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "6"}, {"action_type": "post", "value": "36"}, {"action_type": "onsite_conversion.post_unsave", "value": "1"}, {"action_type": "onsite_conversion.post_save", "value": "32"}, {"action_type": "onsite_conversion.post_net_comment", "value": "7"}, {"action_type": "onsite_conversion.post_net_save", "value": "31"}, {"action_type": "onsite_conversion.post_net_like", "value": "589"}], "objective": "OUTCOME_TRAFFIC"}, {"campaign_name": "[RISE] [QUENTE] SALVADOR [VDD] [ABO]", "spend": 161.01, "reach": 2962, "ctr": 0.67, "cpc": 3.74, "frequency": 2.165429, "actions": [{"action_type": "onsite_conversion.total_messaging_connection", "value": "11", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "10", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "13", "1d_view": "3"}, {"action_type": "link_click", "value": "43"}, {"action_type": "post_reaction", "value": "20"}, {"action_type": "page_engagement", "value": "68"}, {"action_type": "onsite_conversion.post_unlike", "value": "2"}, {"action_type": "post_engagement", "value": "68"}, {"action_type": "post_interaction_gross", "value": "25"}, {"action_type": "post_interaction_net", "value": "29"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "6"}, {"action_type": "post", "value": "1"}, {"action_type": "onsite_conversion.post_unsave", "value": "2"}, {"action_type": "onsite_conversion.post_save", "value": "4"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "3"}, {"action_type": "onsite_conversion.post_net_save", "value": "2"}, {"action_type": "onsite_conversion.post_net_like", "value": "18"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "5"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "LENTES EM RESINA [SERRINHA] [RISE] [CBO] [VD-WPP]", "spend": 205.52, "reach": 5628, "ctr": 0.39, "cpc": 3.74, "frequency": 2.47779, "actions": [{"action_type": "page_engagement", "value": "2593", "1d_view": "2498"}, {"action_type": "post_engagement", "value": "2593", "1d_view": "2498"}, {"action_type": "onsite_conversion.messaging_conversation_replied_7d", "value": "1", "1d_view": "1"}, {"action_type": "video_view", "value": "2505", "1d_view": "2498"}, {"action_type": "link_click", "value": "55"}, {"action_type": "post_reaction", "value": "30"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "6"}, {"action_type": "onsite_conversion.post_unlike", "value": "4"}, {"action_type": "post_interaction_gross", "value": "33"}, {"action_type": "comment", "value": "2"}, {"action_type": "post_interaction_net", "value": "37"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "5"}, {"action_type": "post", "value": "1"}, {"action_type": "onsite_conversion.post_net_comment", "value": "2"}, {"action_type": "onsite_conversion.post_net_like", "value": "26"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "3"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "6"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "[RISE] [QUENTE] LENTES EM RESINA [SERRINHA] [CBO] [VDD-WPP]", "spend": 162.76, "reach": 3371, "ctr": 0.46, "cpc": 3.01, "frequency": 3.500148, "actions": [{"action_type": "page_engagement", "value": "326", "1d_view": "235"}, {"action_type": "post_engagement", "value": "326", "1d_view": "235"}, {"action_type": "video_view", "value": "238", "1d_view": "235"}, {"action_type": "link_click", "value": "54"}, {"action_type": "post_reaction", "value": "31"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "5"}, {"action_type": "post_interaction_gross", "value": "34"}, {"action_type": "comment", "value": "1"}, {"action_type": "post_interaction_net", "value": "34"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "2"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "2"}, {"action_type": "post", "value": "1"}, {"action_type": "onsite_conversion.post_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_comment", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "2"}, {"action_type": "onsite_conversion.post_net_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_like", "value": "31"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "9"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "4"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "LENTES EM RESINA [SALVADOR] [RISE] [CBO] [VD-WPP]", "spend": 205.09, "reach": 4269, "ctr": 0.69, "cpc": 4.88, "frequency": 1.423753, "actions": [{"action_type": "page_engagement", "value": "2010", "1d_view": "1911"}, {"action_type": "post_engagement", "value": "2010", "1d_view": "1911"}, {"action_type": "video_view", "value": "1913", "1d_view": "1911"}, {"action_type": "link_click", "value": "42"}, {"action_type": "post_reaction", "value": "47"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "16"}, {"action_type": "onsite_conversion.post_unlike", "value": "1"}, {"action_type": "post_interaction_gross", "value": "55"}, {"action_type": "comment", "value": "2"}, {"action_type": "post_interaction_net", "value": "56"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "6"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "13"}, {"action_type": "post", "value": "4"}, {"action_type": "onsite_conversion.post_save", "value": "2"}, {"action_type": "onsite_conversion.post_net_comment", "value": "2"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "5"}, {"action_type": "onsite_conversion.post_net_save", "value": "2"}, {"action_type": "onsite_conversion.post_net_like", "value": "46"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "7"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "14"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "[RISE] VENDA [ CONQUISTA] [ENG]", "spend": 121.54, "reach": 3717, "ctr": 0.41, "cpc": 3.2, "frequency": 2.464353, "actions": [{"action_type": "link_click", "value": "38"}, {"action_type": "post_reaction", "value": "9"}, {"action_type": "page_engagement", "value": "54"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "7"}, {"action_type": "post_engagement", "value": "54"}, {"action_type": "post_interaction_gross", "value": "16"}, {"action_type": "post_interaction_net", "value": "16"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "4"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "7"}, {"action_type": "post", "value": "6"}, {"action_type": "onsite_conversion.post_save", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "2"}, {"action_type": "onsite_conversion.post_net_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_like", "value": "9"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "5"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "7"}], "objective": "OUTCOME_ENGAGEMENT"}, {"campaign_name": "[RISE] VAGA DE EMPREGO [SERRINHA] [ENG]", "spend": 26.78, "reach": 2441, "ctr": 0.85, "cpc": 0.52, "frequency": 2.508808, "actions": [{"action_type": "onsite_conversion.total_messaging_connection", "value": "26", "1d_view": "1"}, {"action_type": "link_click", "value": "52"}, {"action_type": "post_reaction", "value": "12"}, {"action_type": "page_engagement", "value": "75"}, {"action_type": "onsite_conversion.post_unlike", "value": "1"}, {"action_type": "post_engagement", "value": "75"}, {"action_type": "post_interaction_gross", "value": "23"}, {"action_type": "post_interaction_net", "value": "24"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "17"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "25"}, {"action_type": "post", "value": "10"}, {"action_type": "onsite_conversion.post_save", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "13"}, {"action_type": "onsite_conversion.post_net_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_like", "value": "11"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "3"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "26"}], "objective": "OUTCOME_ENGAGEMENT"}], "last_14d": [{"campaign_name": "TRÁFEGO PARA O PERFIL [RISE]", "spend": 3372.36, "reach": 372582, "ctr": 1.47, "cpc": 0.31, "frequency": 1.96017, "actions": [{"action_type": "page_engagement", "value": "131700", "1d_view": "118970"}, {"action_type": "post_engagement", "value": "131700", "1d_view": "118970"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "9", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "9", "1d_view": "1"}, {"action_type": "video_view", "value": "119062", "1d_view": "118970"}, {"action_type": "onsite_conversion.messaging_block", "value": "12"}, {"action_type": "link_click", "value": "10716"}, {"action_type": "post_reaction", "value": "1696"}, {"action_type": "onsite_conversion.post_unlike", "value": "143"}, {"action_type": "post_interaction_gross", "value": "1922"}, {"action_type": "comment", "value": "10"}, {"action_type": "post_interaction_net", "value": "2067"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "9"}, {"action_type": "post", "value": "133"}, {"action_type": "onsite_conversion.post_unsave", "value": "2"}, {"action_type": "onsite_conversion.post_save", "value": "83"}, {"action_type": "onsite_conversion.post_net_comment", "value": "10"}, {"action_type": "onsite_conversion.post_net_save", "value": "81"}, {"action_type": "onsite_conversion.post_net_like", "value": "1553"}], "objective": "OUTCOME_TRAFFIC"}, {"campaign_name": "[RISE] [QUENTE] SALVADOR [VDD] [ABO]", "spend": 279.48, "reach": 4034, "ctr": 0.59, "cpc": 4.58, "frequency": 2.578334, "actions": [{"action_type": "page_engagement", "value": "716", "1d_view": "601"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "9", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "6", "1d_view": "1"}, {"action_type": "post_engagement", "value": "716", "1d_view": "601"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "16", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "13", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_conversation_replied_7d", "value": "1", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "18", "1d_view": "5"}, {"action_type": "video_view", "value": "606", "1d_view": "601"}, {"action_type": "link_click", "value": "61"}, {"action_type": "post_reaction", "value": "43"}, {"action_type": "onsite_conversion.post_unlike", "value": "3"}, {"action_type": "post_interaction_gross", "value": "49"}, {"action_type": "post_interaction_net", "value": "54"}, {"action_type": "post", "value": "2"}, {"action_type": "onsite_conversion.post_unsave", "value": "2"}, {"action_type": "onsite_conversion.post_save", "value": "4"}, {"action_type": "onsite_conversion.post_net_save", "value": "2"}, {"action_type": "onsite_conversion.post_net_like", "value": "40"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "5"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "LENTES EM RESINA [SERRINHA] [RISE] [CBO] [VD-WPP]", "spend": 342.59, "reach": 7276, "ctr": 0.41, "cpc": 3.64, "frequency": 3.142523, "actions": [{"action_type": "page_engagement", "value": "4490", "1d_view": "4324"}, {"action_type": "post_engagement", "value": "4490", "1d_view": "4324"}, {"action_type": "onsite_conversion.messaging_conversation_replied_7d", "value": "1", "1d_view": "1"}, {"action_type": "video_view", "value": "4332", "1d_view": "4324"}, {"action_type": "link_click", "value": "94"}, {"action_type": "post_reaction", "value": "57"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "20"}, {"action_type": "onsite_conversion.post_unlike", "value": "5"}, {"action_type": "post_interaction_gross", "value": "64"}, {"action_type": "comment", "value": "2"}, {"action_type": "post_interaction_net", "value": "69"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "9"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "14"}, {"action_type": "post", "value": "4"}, {"action_type": "onsite_conversion.post_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_comment", "value": "2"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "6"}, {"action_type": "onsite_conversion.post_net_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_like", "value": "52"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "15"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "19"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "[RISE] [QUENTE] LENTES EM RESINA [SERRINHA] [CBO] [VDD-WPP]", "spend": 271.14, "reach": 4048, "ctr": 0.46, "cpc": 3.19, "frequency": 4.559783, "actions": [{"action_type": "page_engagement", "value": "1344", "1d_view": "1190"}, {"action_type": "post_engagement", "value": "1344", "1d_view": "1190"}, {"action_type": "video_view", "value": "1195", "1d_view": "1190"}, {"action_type": "link_click", "value": "85"}, {"action_type": "post_reaction", "value": "60"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "8"}, {"action_type": "post_interaction_gross", "value": "64"}, {"action_type": "comment", "value": "1"}, {"action_type": "post_interaction_net", "value": "64"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "3"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "4"}, {"action_type": "post", "value": "2"}, {"action_type": "onsite_conversion.post_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_comment", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "2"}, {"action_type": "onsite_conversion.post_net_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_like", "value": "60"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "20"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "6"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "LENTES EM RESINA [SALVADOR] [RISE] [CBO] [VD-WPP]", "spend": 353.37, "reach": 6254, "ctr": 0.78, "cpc": 4.53, "frequency": 1.601375, "actions": [{"action_type": "page_engagement", "value": "3289", "1d_view": "3117"}, {"action_type": "post_engagement", "value": "3289", "1d_view": "3117"}, {"action_type": "video_view", "value": "3119", "1d_view": "3117"}, {"action_type": "link_click", "value": "78"}, {"action_type": "post_reaction", "value": "82"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "40"}, {"action_type": "onsite_conversion.post_unlike", "value": "1"}, {"action_type": "post_interaction_gross", "value": "92"}, {"action_type": "comment", "value": "3"}, {"action_type": "post_interaction_net", "value": "93"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "16"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "34"}, {"action_type": "post", "value": "4"}, {"action_type": "onsite_conversion.post_save", "value": "3"}, {"action_type": "onsite_conversion.post_net_comment", "value": "3"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "10"}, {"action_type": "onsite_conversion.post_net_save", "value": "3"}, {"action_type": "onsite_conversion.post_net_like", "value": "81"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "13"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "35"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "[RISE] VENDA [ CONQUISTA] [ENG]", "spend": 210.28, "reach": 5128, "ctr": 0.45, "cpc": 2.77, "frequency": 3.292317, "actions": [{"action_type": "onsite_conversion.lead", "value": "2"}, {"action_type": "offsite_complete_registration_add_meta_leads", "value": "2"}, {"action_type": "link_click", "value": "76"}, {"action_type": "offsite_search_add_meta_leads", "value": "2"}, {"action_type": "post_reaction", "value": "14"}, {"action_type": "page_engagement", "value": "108"}, {"action_type": "onsite_web_lead", "value": "2"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "13"}, {"action_type": "onsite_conversion.post_unlike", "value": "2"}, {"action_type": "post_engagement", "value": "108"}, {"action_type": "post_interaction_gross", "value": "32"}, {"action_type": "comment", "value": "1"}, {"action_type": "post_interaction_net", "value": "34"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "8"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "11"}, {"action_type": "post", "value": "16"}, {"action_type": "onsite_conversion.post_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_comment", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "4"}, {"action_type": "onsite_conversion.post_net_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_like", "value": "12"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "9"}, {"action_type": "lead", "value": "2"}, {"action_type": "offsite_content_view_add_meta_leads", "value": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "13"}, {"action_type": "onsite_conversion.lead_grouped", "value": "2"}], "objective": "OUTCOME_ENGAGEMENT"}, {"campaign_name": "[RISE] VAGA DE EMPREGO [ENG]", "spend": 0.0, "reach": 0, "ctr": 0, "cpc": 0, "frequency": 0.0, "actions": [{"action_type": "onsite_conversion.total_messaging_connection", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "1"}], "objective": "OUTCOME_ENGAGEMENT"}, {"campaign_name": "[RISE] VAGA DE EMPREGO [SERRINHA] [ENG]", "spend": 26.78, "reach": 2441, "ctr": 0.85, "cpc": 0.52, "frequency": 2.508808, "actions": [{"action_type": "onsite_conversion.total_messaging_connection", "value": "26", "1d_view": "1"}, {"action_type": "link_click", "value": "52"}, {"action_type": "post_reaction", "value": "12"}, {"action_type": "page_engagement", "value": "75"}, {"action_type": "onsite_conversion.post_unlike", "value": "1"}, {"action_type": "post_engagement", "value": "75"}, {"action_type": "post_interaction_gross", "value": "23"}, {"action_type": "post_interaction_net", "value": "24"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "17"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "25"}, {"action_type": "post", "value": "10"}, {"action_type": "onsite_conversion.post_save", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "13"}, {"action_type": "onsite_conversion.post_net_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_like", "value": "11"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "3"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "26"}], "objective": "OUTCOME_ENGAGEMENT"}], "last_30d": [{"campaign_name": "TRÁFEGO PARA O PERFIL [RISE]", "spend": 7205.85, "reach": 556535, "ctr": 1.52, "cpc": 0.3, "frequency": 2.860911, "actions": [{"action_type": "onsite_conversion.messaging_block", "value": "19", "1d_view": "1"}, {"action_type": "page_engagement", "value": "301699", "1d_view": "272495"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "1d_view": "1"}, {"action_type": "post_engagement", "value": "301699", "1d_view": "272495"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "23", "1d_view": "7"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "21", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "25", "1d_view": "3"}, {"action_type": "video_view", "value": "272700", "1d_view": "272495"}, {"action_type": "link_click", "value": "24213"}, {"action_type": "post_reaction", "value": "4166"}, {"action_type": "onsite_conversion.post_unlike", "value": "344"}, {"action_type": "post_interaction_gross", "value": "4786"}, {"action_type": "comment", "value": "29"}, {"action_type": "post_interaction_net", "value": "5132"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "1"}, {"action_type": "post", "value": "389"}, {"action_type": "onsite_conversion.post_unsave", "value": "2"}, {"action_type": "onsite_conversion.post_save", "value": "202"}, {"action_type": "onsite_conversion.post_net_comment", "value": "29"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "1"}, {"action_type": "onsite_conversion.post_net_save", "value": "200"}, {"action_type": "onsite_conversion.post_net_like", "value": "3822"}, {"action_type": "onsite_conversion.messaging_conversation_replied_7d", "value": "2"}], "objective": "OUTCOME_TRAFFIC"}, {"campaign_name": "[RISE] [QUENTE] SALVADOR [VDD] [ABO]", "spend": 588.29, "reach": 6410, "ctr": 0.56, "cpc": 4.78, "frequency": 3.449454, "actions": [{"action_type": "page_engagement", "value": "942", "1d_view": "710"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "15", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "11", "1d_view": "1"}, {"action_type": "post_engagement", "value": "942", "1d_view": "710"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "28", "1d_view": "5"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "21", "1d_view": "3"}, {"action_type": "onsite_conversion.messaging_conversation_replied_7d", "value": "2", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "29", "1d_view": "8"}, {"action_type": "video_view", "value": "717", "1d_view": "710"}, {"action_type": "link_click", "value": "123"}, {"action_type": "post_reaction", "value": "85"}, {"action_type": "onsite_conversion.post_unlike", "value": "5"}, {"action_type": "post_interaction_gross", "value": "102"}, {"action_type": "comment", "value": "1"}, {"action_type": "post_interaction_net", "value": "110"}, {"action_type": "post", "value": "5"}, {"action_type": "onsite_conversion.post_unsave", "value": "3"}, {"action_type": "onsite_conversion.post_save", "value": "11"}, {"action_type": "onsite_conversion.post_net_comment", "value": "1"}, {"action_type": "onsite_conversion.post_net_save", "value": "8"}, {"action_type": "onsite_conversion.post_net_like", "value": "80"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "14"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "LENTES EM RESINA [SERRINHA] [RISE] [CBO] [VD-WPP]", "spend": 750.57, "reach": 11810, "ctr": 0.54, "cpc": 2.7, "frequency": 4.343014, "actions": [{"action_type": "page_engagement", "value": "10230", "1d_view": "9772"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "22", "1d_view": "2"}, {"action_type": "post_engagement", "value": "10230", "1d_view": "9772"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "46", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_conversation_replied_7d", "value": "3", "1d_view": "3"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "41", "1d_view": "1"}, {"action_type": "video_view", "value": "9804", "1d_view": "9772"}, {"action_type": "link_click", "value": "278"}, {"action_type": "post_reaction", "value": "132"}, {"action_type": "onsite_conversion.post_unlike", "value": "11"}, {"action_type": "post_interaction_gross", "value": "148"}, {"action_type": "comment", "value": "6"}, {"action_type": "post_interaction_net", "value": "160"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "32"}, {"action_type": "post", "value": "6"}, {"action_type": "onsite_conversion.post_unsave", "value": "1"}, {"action_type": "onsite_conversion.post_save", "value": "4"}, {"action_type": "onsite_conversion.post_net_comment", "value": "6"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "13"}, {"action_type": "onsite_conversion.post_net_save", "value": "3"}, {"action_type": "onsite_conversion.post_net_like", "value": "121"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "54"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "[RISE] [QUENTE] LENTES EM RESINA [SERRINHA] [CBO] [VDD-WPP]", "spend": 598.88, "reach": 6044, "ctr": 0.5, "cpc": 2.69, "frequency": 7.315189, "actions": [{"action_type": "page_engagement", "value": "1764", "1d_view": "1395"}, {"action_type": "post_engagement", "value": "1764", "1d_view": "1395"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "28", "1d_view": "5"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "16", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_conversation_replied_7d", "value": "2", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "24", "1d_view": "5"}, {"action_type": "video_view", "value": "1402", "1d_view": "1395"}, {"action_type": "link_click", "value": "223"}, {"action_type": "post_reaction", "value": "129"}, {"action_type": "onsite_conversion.post_unlike", "value": "3"}, {"action_type": "post_interaction_gross", "value": "139"}, {"action_type": "comment", "value": "2"}, {"action_type": "post_interaction_net", "value": "142"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "10"}, {"action_type": "post", "value": "3"}, {"action_type": "onsite_conversion.post_save", "value": "5"}, {"action_type": "onsite_conversion.post_net_comment", "value": "2"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "10"}, {"action_type": "onsite_conversion.post_net_save", "value": "5"}, {"action_type": "onsite_conversion.post_net_like", "value": "126"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "50"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "LENTES EM RESINA [SALVADOR] [RISE] [CBO] [VD-WPP]", "spend": 762.59, "reach": 10288, "ctr": 0.84, "cpc": 4.65, "frequency": 1.908729, "actions": [{"action_type": "page_engagement", "value": "6475", "1d_view": "6139"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "42", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "32", "1d_view": "1"}, {"action_type": "post_engagement", "value": "6475", "1d_view": "6139"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "85", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "72", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_conversation_replied_7d", "value": "2", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "75", "1d_view": "1"}, {"action_type": "video_view", "value": "6143", "1d_view": "6139"}, {"action_type": "link_click", "value": "164"}, {"action_type": "post_reaction", "value": "151"}, {"action_type": "onsite_conversion.post_unlike", "value": "2"}, {"action_type": "post_interaction_gross", "value": "168"}, {"action_type": "comment", "value": "3"}, {"action_type": "post_interaction_net", "value": "170"}, {"action_type": "post", "value": "7"}, {"action_type": "onsite_conversion.post_save", "value": "7"}, {"action_type": "onsite_conversion.post_net_comment", "value": "3"}, {"action_type": "onsite_conversion.post_net_save", "value": "7"}, {"action_type": "onsite_conversion.post_net_like", "value": "149"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "64"}], "objective": "OUTCOME_SALES"}, {"campaign_name": "[RISE] VENDA [ CONQUISTA] [ENG]", "spend": 449.35, "reach": 7230, "ctr": 0.61, "cpc": 2.0, "frequency": 5.103043, "actions": [{"action_type": "onsite_conversion.lead", "value": "2"}, {"action_type": "offsite_complete_registration_add_meta_leads", "value": "2"}, {"action_type": "link_click", "value": "225"}, {"action_type": "offsite_search_add_meta_leads", "value": "2"}, {"action_type": "post_reaction", "value": "33"}, {"action_type": "page_engagement", "value": "299"}, {"action_type": "onsite_web_lead", "value": "2"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "44"}, {"action_type": "onsite_conversion.post_unlike", "value": "4"}, {"action_type": "post_engagement", "value": "299"}, {"action_type": "post_interaction_gross", "value": "74"}, {"action_type": "comment", "value": "1"}, {"action_type": "post_interaction_net", "value": "79"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "21"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "30"}, {"action_type": "post", "value": "32"}, {"action_type": "onsite_conversion.post_unsave", "value": "1"}, {"action_type": "onsite_conversion.post_save", "value": "8"}, {"action_type": "onsite_conversion.post_net_comment", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "12"}, {"action_type": "onsite_conversion.post_net_save", "value": "7"}, {"action_type": "onsite_conversion.post_net_like", "value": "29"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "56"}, {"action_type": "lead", "value": "2"}, {"action_type": "offsite_content_view_add_meta_leads", "value": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "40"}, {"action_type": "onsite_conversion.lead_grouped", "value": "2"}], "objective": "OUTCOME_ENGAGEMENT"}, {"campaign_name": "[RISE] VAGA DE EMPREGO", "spend": 74.66, "reach": 6170, "ctr": 1.95, "cpc": 0.36, "frequency": 1.744408, "actions": [{"action_type": "onsite_conversion.total_messaging_connection", "value": "93", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "83", "1d_view": "2"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "83", "1d_view": "2"}, {"action_type": "onsite_conversion.lead", "value": "2"}, {"action_type": "offsite_complete_registration_add_meta_leads", "value": "2"}, {"action_type": "link_click", "value": "210"}, {"action_type": "offsite_search_add_meta_leads", "value": "2"}, {"action_type": "post_reaction", "value": "40"}, {"action_type": "page_engagement", "value": "304"}, {"action_type": "onsite_web_lead", "value": "2"}, {"action_type": "onsite_conversion.post_unlike", "value": "2"}, {"action_type": "post_engagement", "value": "304"}, {"action_type": "post_interaction_gross", "value": "94"}, {"action_type": "post_interaction_net", "value": "96"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "38"}, {"action_type": "post", "value": "49"}, {"action_type": "onsite_conversion.post_save", "value": "5"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "12"}, {"action_type": "onsite_conversion.post_net_save", "value": "5"}, {"action_type": "onsite_conversion.post_net_like", "value": "38"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "15"}, {"action_type": "lead", "value": "2"}, {"action_type": "offsite_content_view_add_meta_leads", "value": "2"}, {"action_type": "onsite_conversion.lead_grouped", "value": "2"}], "objective": "OUTCOME_ENGAGEMENT"}, {"campaign_name": "[RISE] VAGA DE EMPREGO [ENG]", "spend": 70.96, "reach": 6157, "ctr": 1.45, "cpc": 0.48, "frequency": 1.646256, "actions": [{"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "26", "1d_view": "1"}, {"action_type": "onsite_conversion.total_messaging_connection", "value": "77", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "63", "1d_view": "1"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "63", "1d_view": "1"}, {"action_type": "onsite_conversion.lead", "value": "1"}, {"action_type": "offsite_complete_registration_add_meta_leads", "value": "1"}, {"action_type": "link_click", "value": "147"}, {"action_type": "offsite_search_add_meta_leads", "value": "1"}, {"action_type": "post_reaction", "value": "42"}, {"action_type": "page_engagement", "value": "237"}, {"action_type": "onsite_web_lead", "value": "1"}, {"action_type": "onsite_conversion.post_unlike", "value": "1"}, {"action_type": "post_engagement", "value": "237"}, {"action_type": "post_interaction_gross", "value": "90"}, {"action_type": "post_interaction_net", "value": "91"}, {"action_type": "post", "value": "42"}, {"action_type": "onsite_conversion.post_save", "value": "6"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "6"}, {"action_type": "onsite_conversion.post_net_save", "value": "6"}, {"action_type": "onsite_conversion.post_net_like", "value": "41"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "5"}, {"action_type": "lead", "value": "1"}, {"action_type": "offsite_content_view_add_meta_leads", "value": "1"}, {"action_type": "onsite_conversion.lead_grouped", "value": "1"}], "objective": "OUTCOME_ENGAGEMENT"}, {"campaign_name": "[RISE] VAGA DE EMPREGO [SERRINHA] [ENG]", "spend": 26.78, "reach": 2441, "ctr": 0.85, "cpc": 0.52, "frequency": 2.508808, "actions": [{"action_type": "onsite_conversion.total_messaging_connection", "value": "26", "1d_view": "1"}, {"action_type": "link_click", "value": "52"}, {"action_type": "post_reaction", "value": "12"}, {"action_type": "page_engagement", "value": "75"}, {"action_type": "onsite_conversion.post_unlike", "value": "1"}, {"action_type": "post_engagement", "value": "75"}, {"action_type": "post_interaction_gross", "value": "23"}, {"action_type": "post_interaction_net", "value": "24"}, {"action_type": "onsite_conversion.messaging_user_depth_2_message_send", "value": "17"}, {"action_type": "onsite_conversion.messaging_first_reply", "value": "25"}, {"action_type": "post", "value": "10"}, {"action_type": "onsite_conversion.post_save", "value": "1"}, {"action_type": "onsite_conversion.messaging_user_depth_3_message_send", "value": "13"}, {"action_type": "onsite_conversion.post_net_save", "value": "1"}, {"action_type": "onsite_conversion.post_net_like", "value": "11"}, {"action_type": "onsite_conversion.messaging_user_depth_5_message_send", "value": "3"}, {"action_type": "onsite_conversion.messaging_conversation_started_7d", "value": "26"}], "objective": "OUTCOME_ENGAGEMENT"}]};
+const PERIOD_DATA = {"last_7d": {"spend": 2832.34, "reach": 274623, "impressions": 474858, "clicks": 6644, "link_clicks": 6509, "ctr": 1.37, "cpc": 0.44, "cpm": 5.964604, "frequency": 1.729127, "dms": 76, "convs_ig": 72, "convs_fb": 1, "custo_conversa": 37.27, "ads": {"120237920055060731": {"spend": 512.28, "reach": 73255, "ctr": 2.182859, "resultado_label": "Cliques no link", "resultado_val": 2053}, "120237920086150731": {"spend": 38.66, "reach": 8919, "ctr": 1.2667, "resultado_label": "Cliques no link", "resultado_val": 134}, "120241842471050731": {"spend": 151.06, "reach": 2851, "ctr": 1.346801, "resultado_label": "Conversas iniciadas", "resultado_val": 12}, "120241842471070731": {"spend": 5.65, "reach": 221, "ctr": 1.984127, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120241842471080731": {"spend": 4.3, "reach": 189, "ctr": 1.351351, "resultado_label": "Cliques no link", "resultado_val": 1}, "120242367426960731": {"spend": 1.62, "reach": 251, "ctr": 3.448276, "resultado_label": "Cliques no link", "resultado_val": 9}, "120242367539300731": {"spend": 2.54, "reach": 651, "ctr": 1.225115, "resultado_label": "Cliques no link", "resultado_val": 8}, "120242367577190731": {"spend": 78.64, "reach": 17082, "ctr": 1.464684, "resultado_label": "Conversas iniciadas", "resultado_val": 4}, "120242367644830731": {"spend": 38.58, "reach": 10496, "ctr": 1.111469, "resultado_label": "Cliques no link", "resultado_val": 139}, "120242367644840731": {"spend": 11.03, "reach": 2350, "ctr": 1.045016, "resultado_label": "Cliques no link", "resultado_val": 26}, "120242367644850731": {"spend": 47.06, "reach": 10561, "ctr": 0.902435, "resultado_label": "Cliques no link", "resultado_val": 107}, "120242367644860731": {"spend": 39.87, "reach": 8837, "ctr": 1.084726, "resultado_label": "Cliques no link", "resultado_val": 113}, "120242367790430731": {"spend": 6.57, "reach": 1675, "ctr": 1.31291, "resultado_label": "Cliques no link", "resultado_val": 24}, "120242367790440731": {"spend": 72.26, "reach": 15280, "ctr": 1.151887, "resultado_label": "Cliques no link", "resultado_val": 202}, "120242367790450731": {"spend": 10.08, "reach": 3128, "ctr": 0.874891, "resultado_label": "Cliques no link", "resultado_val": 30}, "120242843046270731": {"spend": 2.77, "reach": 168, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242843365250731": {"spend": 6.89, "reach": 223, "ctr": 0.920245, "resultado_label": "Cliques no link", "resultado_val": 3}, "120242843835120731": {"spend": 15.77, "reach": 575, "ctr": 0.808625, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242844334360731": {"spend": 2.0, "reach": 122, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242844334370731": {"spend": 0.91, "reach": 47, "ctr": 1.818182, "resultado_label": "Resultados", "resultado_val": 0}, "120242844334390731": {"spend": 0.44, "reach": 27, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242844334400731": {"spend": 48.39, "reach": 2898, "ctr": 0.598516, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242847333200731": {"spend": 5.48, "reach": 400, "ctr": 0.607287, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242847333210731": {"spend": 127.59, "reach": 3040, "ctr": 0.768232, "resultado_label": "Conversas iniciadas", "resultado_val": 3}, "120242847333230731": {"spend": 0.49, "reach": 34, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242847970890731": {"spend": 1.3, "reach": 35, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242847970900731": {"spend": 1.14, "reach": 16, "ctr": 5.263158, "resultado_label": "Resultados", "resultado_val": 0}, "120242847970910731": {"spend": 0.34, "reach": 21, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848017730731": {"spend": 0.29, "reach": 14, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848029140731": {"spend": 132.34, "reach": 3128, "ctr": 1.349287, "resultado_label": "Conversas iniciadas", "resultado_val": 11}, "120242848085380731": {"spend": 0.76, "reach": 19, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848085390731": {"spend": 0.67, "reach": 20, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848085400731": {"spend": 63.47, "reach": 1632, "ctr": 1.515152, "resultado_label": "Conversas iniciadas", "resultado_val": 2}, "120242848085410731": {"spend": 0.08, "reach": 3, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848085430731": {"spend": 0.46, "reach": 14, "ctr": 7.142857, "resultado_label": "Resultados", "resultado_val": 0}, "120244384917170731": {"spend": 7.9, "reach": 511, "ctr": 0.909091, "resultado_label": "Cliques no link", "resultado_val": 1}, "120244384954010731": {"spend": 104.74, "reach": 3515, "ctr": 0.845179, "resultado_label": "Conversas iniciadas", "resultado_val": 6}, "120244384958550731": {"spend": 8.9, "reach": 555, "ctr": 0.434153, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120245183847900731": {"spend": 528.64, "reach": 86270, "ctr": 1.277841, "resultado_label": "Conversas iniciadas", "resultado_val": 2}, "120245184239310731": {"spend": 49.09, "reach": 6382, "ctr": 2.45023, "resultado_label": "Cliques no link", "resultado_val": 165}, "120245184239320731": {"spend": 512.72, "reach": 70996, "ctr": 1.185183, "resultado_label": "Cliques no link", "resultado_val": 1377}, "120245726709040731": {"spend": 117.63, "reach": 3245, "ctr": 0.634797, "resultado_label": "Conversas iniciadas", "resultado_val": 3}, "120245726796650731": {"spend": 9.52, "reach": 300, "ctr": 0.645161, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120245726822060731": {"spend": 0.0, "reach": 0, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120245726857330731": {"spend": 0.83, "reach": 61, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120245726857340731": {"spend": 0.37, "reach": 21, "ctr": 4.761905, "resultado_label": "Cliques no link", "resultado_val": 1}, "120245726892180731": {"spend": 2.7, "reach": 46, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120245726956870731": {"spend": 0.22, "reach": 4, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120245726981450731": {"spend": 0.0, "reach": 0, "ctr": 0.0, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120245727016040731": {"spend": 0.05, "reach": 2, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}}}, "last_14d": {"spend": 4856.0, "reach": 386343, "impressions": 815070, "clicks": 11400, "link_clicks": 11162, "ctr": 1.37, "cpc": 0.44, "cpm": 5.957771, "frequency": 2.109706, "dms": 126, "convs_ig": 121, "convs_fb": 2, "custo_conversa": 38.54, "ads": {"120237920055060731": {"spend": 534.27, "reach": 75310, "ctr": 2.216708, "resultado_label": "Cliques no link", "resultado_val": 2168}, "120237920086150731": {"spend": 81.57, "reach": 16762, "ctr": 1.238797, "resultado_label": "Cliques no link", "resultado_val": 272}, "120241842471050731": {"spend": 156.83, "reach": 2946, "ctr": 1.278159, "resultado_label": "Conversas iniciadas", "resultado_val": 12}, "120241842471070731": {"spend": 15.97, "reach": 678, "ctr": 1.375, "resultado_label": "Conversas iniciadas", "resultado_val": 2}, "120241842471080731": {"spend": 4.86, "reach": 213, "ctr": 2.247191, "resultado_label": "Cliques no link", "resultado_val": 4}, "120242367426960731": {"spend": 2.23, "reach": 323, "ctr": 3.428571, "resultado_label": "Cliques no link", "resultado_val": 12}, "120242367539300731": {"spend": 2.95, "reach": 713, "ctr": 1.536313, "resultado_label": "Cliques no link", "resultado_val": 11}, "120242367577190731": {"spend": 522.98, "reach": 83629, "ctr": 1.702697, "resultado_label": "Conversas iniciadas", "resultado_val": 5}, "120242367644830731": {"spend": 52.34, "reach": 12668, "ctr": 1.126018, "resultado_label": "Cliques no link", "resultado_val": 190}, "120242367644840731": {"spend": 18.44, "reach": 3776, "ctr": 1.030434, "resultado_label": "Cliques no link", "resultado_val": 43}, "120242367644850731": {"spend": 65.15, "reach": 13225, "ctr": 0.9941, "resultado_label": "Cliques no link", "resultado_val": 156}, "120242367644860731": {"spend": 46.97, "reach": 9890, "ctr": 1.14507, "resultado_label": "Cliques no link", "resultado_val": 141}, "120242367790430731": {"spend": 15.53, "reach": 4059, "ctr": 1.157775, "resultado_label": "Cliques no link", "resultado_val": 52}, "120242367790440731": {"spend": 105.87, "reach": 20458, "ctr": 1.164199, "resultado_label": "Cliques no link", "resultado_val": 302}, "120242367790450731": {"spend": 20.97, "reach": 5688, "ctr": 0.845321, "resultado_label": "Cliques no link", "resultado_val": 58}, "120242843046270731": {"spend": 5.16, "reach": 259, "ctr": 0.299401, "resultado_label": "Cliques no link", "resultado_val": 1}, "120242843365250731": {"spend": 7.82, "reach": 228, "ctr": 0.890208, "resultado_label": "Cliques no link", "resultado_val": 3}, "120242843835120731": {"spend": 16.2, "reach": 583, "ctr": 0.789474, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242844334360731": {"spend": 2.03, "reach": 126, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242844334370731": {"spend": 1.19, "reach": 71, "ctr": 2.439024, "resultado_label": "Cliques no link", "resultado_val": 1}, "120242844334390731": {"spend": 0.55, "reach": 31, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242844334400731": {"spend": 53.3, "reach": 3057, "ctr": 0.598802, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242847333200731": {"spend": 10.17, "reach": 607, "ctr": 0.727273, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242847333210731": {"spend": 132.08, "reach": 3087, "ctr": 0.7979, "resultado_label": "Conversas iniciadas", "resultado_val": 3}, "120242847333230731": {"spend": 0.54, "reach": 38, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242847970890731": {"spend": 1.61, "reach": 40, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242847970900731": {"spend": 1.22, "reach": 17, "ctr": 5.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242847970910731": {"spend": 1.38, "reach": 41, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848017730731": {"spend": 0.39, "reach": 19, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848029140731": {"spend": 137.85, "reach": 3230, "ctr": 1.345401, "resultado_label": "Conversas iniciadas", "resultado_val": 11}, "120242848085380731": {"spend": 1.14, "reach": 29, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848085390731": {"spend": 3.28, "reach": 106, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848085400731": {"spend": 69.46, "reach": 1763, "ctr": 1.453352, "resultado_label": "Conversas iniciadas", "resultado_val": 3}, "120242848085410731": {"spend": 0.19, "reach": 8, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848085430731": {"spend": 0.49, "reach": 15, "ctr": 6.666667, "resultado_label": "Resultados", "resultado_val": 0}, "120244384917170731": {"spend": 17.71, "reach": 996, "ctr": 0.584036, "resultado_label": "Cliques no link", "resultado_val": 2}, "120244384954010731": {"spend": 176.34, "reach": 4850, "ctr": 0.950543, "resultado_label": "Conversas iniciadas", "resultado_val": 12}, "120244384958550731": {"spend": 16.23, "reach": 932, "ctr": 0.518519, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120245183847900731": {"spend": 906.45, "reach": 120945, "ctr": 1.299051, "resultado_label": "Conversas iniciadas", "resultado_val": 3}, "120245184239310731": {"spend": 55.7, "reach": 7029, "ctr": 2.520314, "resultado_label": "Cliques no link", "resultado_val": 190}, "120245184239320731": {"spend": 940.94, "reach": 98790, "ctr": 1.212565, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120245242565950731": {"spend": 0.0, "reach": 0, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120245726709040731": {"spend": 142.33, "reach": 3420, "ctr": 0.637643, "resultado_label": "Conversas iniciadas", "resultado_val": 5}, "120245726796650731": {"spend": 12.18, "reach": 392, "ctr": 0.475436, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120245726822060731": {"spend": 82.41, "reach": 3024, "ctr": 0.97561, "resultado_label": "Conversas iniciadas", "resultado_val": 9}, "120245726857320731": {"spend": 15.55, "reach": 730, "ctr": 1.273885, "resultado_label": "Conversas iniciadas", "resultado_val": 2}, "120245726857330731": {"spend": 2.63, "reach": 138, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120245726857340731": {"spend": 1.24, "reach": 69, "ctr": 1.315789, "resultado_label": "Cliques no link", "resultado_val": 1}, "120245726892180731": {"spend": 4.28, "reach": 72, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120245726956870731": {"spend": 0.31, "reach": 7, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}}}, "last_30d": {"spend": 10527.93, "reach": 583763, "impressions": 1793367, "clicks": 26640, "link_clicks": 25635, "ctr": 1.43, "cpc": 0.41, "cpm": 5.870483, "frequency": 3.072081, "dms": 406, "convs_ig": 397, "convs_fb": 6, "custo_conversa": 25.93, "ads": {"120237920055060731": {"spend": 721.87, "reach": 93610, "ctr": 2.382841, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120237920086150731": {"spend": 341.28, "reach": 54618, "ctr": 1.267251, "resultado_label": "Cliques no link", "resultado_val": 1094}, "120241842471050731": {"spend": 434.49, "reach": 5545, "ctr": 1.204676, "resultado_label": "Conversas iniciadas", "resultado_val": 23}, "120241842471070731": {"spend": 29.64, "reach": 1093, "ctr": 1.268499, "resultado_label": "Conversas iniciadas", "resultado_val": 2}, "120241842471080731": {"spend": 10.14, "reach": 334, "ctr": 1.612903, "resultado_label": "Cliques no link", "resultado_val": 4}, "120242367426960731": {"spend": 2.64, "reach": 369, "ctr": 2.905569, "resultado_label": "Cliques no link", "resultado_val": 12}, "120242367539300731": {"spend": 4.71, "reach": 993, "ctr": 1.679842, "resultado_label": "Cliques no link", "resultado_val": 17}, "120242367577190731": {"spend": 1226.28, "reach": 158408, "ctr": 1.683003, "resultado_label": "Conversas iniciadas", "resultado_val": 12}, "120242367644830731": {"spend": 491.65, "reach": 59380, "ctr": 1.046539, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242367644840731": {"spend": 69.1, "reach": 12159, "ctr": 1.175383, "resultado_label": "Cliques no link", "resultado_val": 180}, "120242367644850731": {"spend": 125.52, "reach": 23233, "ctr": 0.989669, "resultado_label": "Cliques no link", "resultado_val": 298}, "120242367644860731": {"spend": 68.0, "reach": 12924, "ctr": 1.121443, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242367790430731": {"spend": 41.11, "reach": 9992, "ctr": 1.107987, "resultado_label": "Cliques no link", "resultado_val": 135}, "120242367790440731": {"spend": 343.71, "reach": 56455, "ctr": 1.134082, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242367790450731": {"spend": 102.4, "reach": 23157, "ctr": 1.057996, "resultado_label": "Cliques no link", "resultado_val": 360}, "120242843046270731": {"spend": 19.06, "reach": 1214, "ctr": 0.971503, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242843046280731": {"spend": 17.57, "reach": 1078, "ctr": 0.920245, "resultado_label": "Cliques no link", "resultado_val": 10}, "120242843046290731": {"spend": 3.2, "reach": 285, "ctr": 0.322581, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242843365250731": {"spend": 217.28, "reach": 4346, "ctr": 0.949609, "resultado_label": "Conversas iniciadas", "resultado_val": 11}, "120242843835120731": {"spend": 32.17, "reach": 1105, "ctr": 0.996264, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242844334360731": {"spend": 5.52, "reach": 321, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242844334370731": {"spend": 8.22, "reach": 584, "ctr": 1.503759, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242844334380731": {"spend": 60.32, "reach": 3146, "ctr": 0.826806, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242844334390731": {"spend": 1.82, "reach": 128, "ctr": 1.37931, "resultado_label": "Cliques no link", "resultado_val": 2}, "120242844334400731": {"spend": 105.66, "reach": 5113, "ctr": 0.742358, "resultado_label": "Conversas iniciadas", "resultado_val": 7}, "120242847333200731": {"spend": 21.6, "reach": 1294, "ctr": 0.856531, "resultado_label": "Conversas iniciadas", "resultado_val": 3}, "120242847333210731": {"spend": 424.5, "reach": 5649, "ctr": 0.869565, "resultado_label": "Conversas iniciadas", "resultado_val": 17}, "120242847333230731": {"spend": 10.47, "reach": 600, "ctr": 0.765306, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242847970890731": {"spend": 9.32, "reach": 150, "ctr": 1.796407, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242847970900731": {"spend": 1.47, "reach": 30, "ctr": 6.060606, "resultado_label": "Resultados", "resultado_val": 0}, "120242847970910731": {"spend": 6.21, "reach": 142, "ctr": 2.631579, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242848017730731": {"spend": 1.99, "reach": 45, "ctr": 1.851852, "resultado_label": "Resultados", "resultado_val": 0}, "120242848029140731": {"spend": 311.45, "reach": 5974, "ctr": 1.446281, "resultado_label": "Conversas iniciadas", "resultado_val": 27}, "120242848085380731": {"spend": 7.42, "reach": 115, "ctr": 3.846154, "resultado_label": "Conversas iniciadas", "resultado_val": 2}, "120242848085390731": {"spend": 21.63, "reach": 429, "ctr": 1.043841, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120242848085400731": {"spend": 248.94, "reach": 4135, "ctr": 1.599488, "resultado_label": "Conversas iniciadas", "resultado_val": 21}, "120242848085410731": {"spend": 0.61, "reach": 17, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120242848085430731": {"spend": 3.48, "reach": 118, "ctr": 1.526718, "resultado_label": "Resultados", "resultado_val": 0}, "120244384917170731": {"spend": 38.78, "reach": 1657, "ctr": 0.949367, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120244384954010731": {"spend": 376.24, "reach": 6856, "ctr": 1.226412, "resultado_label": "Conversas iniciadas", "resultado_val": 35}, "120244384958550731": {"spend": 34.33, "reach": 1491, "ctr": 0.914849, "resultado_label": "Conversas iniciadas", "resultado_val": 4}, "120244438226750731": {"spend": 0.0, "reach": 0, "ctr": 0.0, "resultado_label": "Resultados", "resultado_val": 0}, "120245172171040731": {"spend": 74.66, "reach": 6170, "ctr": 4.617672, "resultado_label": "Conversas iniciadas", "resultado_val": 83}, "120245183847900731": {"spend": 1580.0, "reach": 158988, "ctr": 1.471602, "resultado_label": "Conversas iniciadas", "resultado_val": 6}, "120245184239310731": {"spend": 437.95, "reach": 52773, "ctr": 2.29522, "resultado_label": "Cliques no link", "resultado_val": 1559}, "120245184239320731": {"spend": 1649.63, "reach": 124512, "ctr": 1.357841, "resultado_label": "Conversas iniciadas", "resultado_val": 3}, "120245242565950731": {"spend": 70.96, "reach": 6157, "ctr": 3.897001, "resultado_label": "Conversas iniciadas", "resultado_val": 63}, "120245726709040731": {"spend": 143.93, "reach": 3431, "ctr": 0.631052, "resultado_label": "Conversas iniciadas", "resultado_val": 5}, "120245726796650731": {"spend": 12.55, "reach": 402, "ctr": 0.451807, "resultado_label": "Conversas iniciadas", "resultado_val": 1}, "120245726822060731": {"spend": 102.35, "reach": 3602, "ctr": 1.031208, "resultado_label": "Conversas iniciadas", "resultado_val": 10}}}};
+
+// ═══ HELPERS DE FORMATAÇÃO (JS) ═══
+const MESES_JS = ['','Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+function parseDate(s) { return new Date(s + 'T12:00:00'); }
+function dateBr(ds) { const d = parseDate(ds); return d.getDate() + ' ' + MESES_JS[d.getMonth()+1]; }
+function fmtNum(n) { return Math.round(n).toLocaleString('pt-BR'); }
+function fmtBrl(v) { return 'R$ ' + v.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+function fmtPct(v) { return v.toFixed(2).replace('.', ',') + '%'; }
+
+// ═══ HELPERS DE CAMPANHA ═══
+function extractAction(actions, type) {
+  if (!actions) return 0;
+  for (const a of actions) {
+    if (a.action_type === type) return parseInt(a.value) || 0;
+  }
+  return 0;
+}
+
+function getResultado(objective, actions) {
+  const conversas = extractAction(actions, 'onsite_conversion.messaging_conversation_started_7d');
+  if (conversas > 0) return { label: 'Conversas iniciadas', val: conversas };
+  const leads = extractAction(actions, 'lead');
+  if (leads > 0) return { label: 'Cadastros', val: leads };
+  const clicks = extractAction(actions, 'link_click');
+  if (clicks > 0) return { label: 'Cliques no link', val: clicks };
+  return { label: 'Resultados', val: 0 };
+}
+
+function renderCamps(preset) {
+  const camps = CAMPS_DATA[preset] || CAMPS_DATA['last_30d'] || [];
+  const container = document.getElementById('campCardsContainer');
+  if (!container) return;
+  const countEl = document.getElementById('camp-count');
+  if (countEl) countEl.textContent = camps.length;
+  if (!camps.length) {
+    container.innerHTML = '<div style="color:var(--muted);grid-column:1/-1;padding:20px;">Sem campanhas com gasto no período.</div>';
+    return;
+  }
+  const totalSpend = camps.reduce((s, c) => s + c.spend, 0) || 1;
+  container.innerHTML = camps.map(camp => {
+    const sat = camp.frequency >= 5 ? 'critica' : (camp.frequency >= 3 ? 'atencao' : 'ok');
+    const satLabel = sat === 'ok' ? 'OK' : (sat === 'atencao' ? 'Atenção' : 'Saturado');
+    const pct = (camp.spend / totalSpend * 100).toFixed(1);
+    const ctrColor = camp.ctr > 2 ? 'var(--green)' : 'var(--accent)';
+    const res = getResultado(camp.objective, camp.actions);
+    const views    = extractAction(camp.actions, 'video_view');
+    const reactions= extractAction(camp.actions, 'post_reaction');
+    const saves    = extractAction(camp.actions, 'onsite_conversion.post_save');
+    const comments = extractAction(camp.actions, 'comment');
+    return '<div class="camp-card">' +
+      '<div class="camp-top"><div><div class="camp-name">' + camp.campaign_name + '</div></div>' +
+      '<div style="text-align:right;"><div class="camp-spend" style="color:var(--accent);">' + fmtBrl(camp.spend) + '</div>' +
+      '<div style="font-size:12px;color:var(--muted);">' + pct + '% do total</div></div></div>' +
+      '<div class="camp-metrics" style="grid-template-columns:repeat(5,1fr);">' +
+        '<div class="camp-metric"><div class="camp-metric-label">Alcance</div><div class="camp-metric-value">' + fmtNum(camp.reach) + '</div></div>' +
+        '<div class="camp-metric"><div class="camp-metric-label">CTR</div><div class="camp-metric-value" style="color:' + ctrColor + ';">' + fmtPct(camp.ctr) + '</div></div>' +
+        '<div class="camp-metric"><div class="camp-metric-label">CPC</div><div class="camp-metric-value">' + fmtBrl(camp.cpc) + '</div></div>' +
+        '<div class="camp-metric"><div class="camp-metric-label">Frequência</div><div class="camp-metric-value">' + camp.frequency.toFixed(1) + '</div><span class="sat-badge ' + sat + '">' + satLabel + '</span></div>' +
+        '<div class="camp-metric"><div class="camp-metric-label">' + res.label + '</div><div class="camp-metric-value" style="color:var(--green);">' + fmtNum(res.val) + '</div></div>' +
+      '</div>' +
+      '<div class="camp-actions">' +
+        '<div class="action-box"><div class="action-val">' + fmtNum(views) + '</div><div class="action-name">Visualizações</div></div>' +
+        '<div class="action-box"><div class="action-val">' + fmtNum(reactions) + '</div><div class="action-name">Reações</div></div>' +
+        '<div class="action-box"><div class="action-val">' + fmtNum(saves) + '</div><div class="action-name">Salvamentos</div></div>' +
+        '<div class="action-box"><div class="action-val">' + fmtNum(comments) + '</div><div class="action-name">Comentários</div></div>' +
+      '</div></div>';
+  }).join('');
+}
+
+// ═══ FILTRO DE PERÍODO ═══
+function filterDaily(since, until) {
+  const s = parseDate(since), u = parseDate(until);
+  return DAILY_DATA.filter(d => { const dt = parseDate(d.date); return dt >= s && dt <= u; });
+}
+
+function sumDaily(rows) {
+  const r = { spend:0, impressions:0, clicks:0, reach:0, link_clicks:0, video_views:0, saves:0, dms:0, leads:0, reactions:0, comments_count:0, landing_page_views:0 };
+  rows.forEach(d => {
+    r.spend += d.spend; r.impressions += d.impressions; r.clicks += d.clicks; r.reach += d.reach;
+    r.link_clicks += d.link_clicks||0; r.video_views += d.video_views||0; r.saves += d.saves||0;
+    r.dms += d.dms||0; r.leads += d.leads||0; r.reactions += d.reactions||0;
+    r.comments_count += d.comments_count||0; r.landing_page_views += d.landing_page_views||0;
+  });
+  r.ctr = r.impressions > 0 ? (r.link_clicks / r.impressions * 100) : 0;
+  r.cpc = r.link_clicks > 0 ? (r.spend / r.link_clicks) : 0;
+  r.cpm = r.impressions > 0 ? (r.spend / r.impressions * 1000) : 0;
+  r.dias = rows.length;
+  r.gasto_diario = rows.length > 0 ? (r.spend / rows.length) : 0;
+  return r;
+}
+
+function calcDeltas(cur, prev) {
+  const d = {};
+  ['spend','impressions','clicks','reach','ctr','cpc','cpm'].forEach(k => {
+    const c = cur[k]||0, p = prev[k]||0;
+    d[k] = p > 0 ? ((c - p) / p * 100) : null;
+  });
+  return d;
+}
+
+function deltaHtml(valor, inverso) {
+  if (valor === null || valor === undefined) return '<span class="delta neutral">—</span>';
+  const classe = inverso ? (valor > 0 ? 'down' : valor < 0 ? 'up' : 'neutral') : (valor > 0 ? 'up' : valor < 0 ? 'down' : 'neutral');
+  const seta = valor > 0 ? '▲' : valor < 0 ? '▼' : '—';
+  return '<span class="delta ' + classe + '">' + seta + ' ' + Math.abs(valor).toFixed(1) + '%</span>';
+}
+
+function applyFilter(preset) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+
+  // Atualizar botão ativo
+  const btnMap = { last_7d:'7d', last_14d:'14d', last_30d:'30d' };
+  const btn = document.getElementById('filter-' + btnMap[preset]);
+  if (btn) btn.classList.add('active');
+
+  // Atualizar campanhas via JSON pré-coletado
+  renderCamps(preset);
+
+  // Atualizar label do título
+  const labelMap = { last_7d:'7 dias', last_14d:'14 dias', last_30d:'30 dias' };
+  const el = id => document.getElementById(id);
+  const kpiLabel = el('kpi-period-label');
+  if (kpiLabel) kpiLabel.innerHTML = '&middot; ' + (labelMap[preset] || '');
+
+  if (DAILY_DATA.length === 0) return;
+
+  const diasMap = { last_7d: 7, last_14d: 14, last_30d: 30 };
+  const nDias = diasMap[preset] || 30;
+  const lastDate = DAILY_DATA[DAILY_DATA.length - 1].date;
+  const lastDt = parseDate(lastDate);
+  const s = new Date(lastDt); s.setDate(s.getDate() - nDias + 1);
+  const since = s.toISOString().slice(0, 10);
+  const until = lastDate;
+
+  const filtered = filterDaily(since, until);
+  const current = sumDaily(filtered);
+
+  // Comparativo com período anterior
+  const perioDias = Math.round((parseDate(until) - parseDate(since)) / 86400000) + 1;
+  const prevUntilDt = new Date(parseDate(since)); prevUntilDt.setDate(prevUntilDt.getDate() - 1);
+  const prevSinceDt = new Date(prevUntilDt); prevSinceDt.setDate(prevSinceDt.getDate() - perioDias + 1);
+  const prevFiltered = filterDaily(prevSinceDt.toISOString().slice(0,10), prevUntilDt.toISOString().slice(0,10));
+  const deltas = prevFiltered.length > 0 ? calcDeltas(current, sumDaily(prevFiltered)) : {};
+
+  // Atualizar KPIs usando PERIOD_DATA (dados reais da API por período)
+  const pd = PERIOD_DATA[preset] || PERIOD_DATA['last_30d'];
+  const diasPorDia = nDias > 0 ? pd.spend / nDias : 0;
+  el('kpi-val-spend').textContent = fmtBrl(pd.spend);
+  el('kpi-sub-spend').innerHTML = '~' + fmtBrl(diasPorDia) + '/dia ';
+  el('kpi-val-reach').textContent = fmtNum(pd.reach);
+  el('kpi-sub-reach').innerHTML = 'pessoas únicas ';
+  el('kpi-val-freq').textContent = pd.frequency.toFixed(2).replace('.', ',');
+  el('kpi-val-impressions').textContent = fmtNum(pd.impressions);
+  el('kpi-sub-impressions').innerHTML = 'exibições ';
+  el('kpi-val-link-clicks').textContent = fmtNum(pd.link_clicks);
+  el('kpi-sub-link-clicks').innerHTML = fmtNum(pd.clicks) + ' cliques totais ';
+  el('kpi-val-ctr').textContent = fmtPct(pd.ctr);
+  el('kpi-sub-ctr').innerHTML = 'taxa de clique ';
+  el('kpi-val-cpc').textContent = fmtBrl(pd.cpc);
+  el('kpi-sub-cpc').innerHTML = 'custo por clique ';
+  el('kpi-val-cpm').textContent = fmtBrl(pd.cpm);
+  el('kpi-sub-cpm').innerHTML = 'custo por mil ';
+  // Linha 3 — conversas (dados reais por período)
+  const upd = (id, val) => { const e = el(id); if (e) e.textContent = val; };
+  upd('kpi-val-dms', fmtNum(pd.dms));
+  upd('kpi-val-cpm-conversa', pd.custo_conversa > 0 ? fmtBrl(pd.custo_conversa) : '—');
+  // Conversas IG/FB (reais por período)
+  const convCards = document.querySelectorAll('.kpi-card.blue-card .kpi-value');
+  if (convCards.length >= 4) {
+    convCards[0].textContent = fmtNum(pd.dms);
+    convCards[1].textContent = fmtNum(pd.convs_ig);
+    convCards[2].textContent = fmtNum(pd.convs_fb);
+    convCards[3].textContent = pd.custo_conversa > 0 ? fmtBrl(pd.custo_conversa) : '—';
+  }
+
+  // Trocar gráficos demográficos
+  ['7d','14d','30d'].forEach(p => {
+    const d = document.getElementById('demo-' + p); if (d) d.style.display = 'none';
+  });
+  const demoId = 'demo-' + (btnMap[preset] || '30d');
+  const demoEl = document.getElementById(demoId); if (demoEl) demoEl.style.display = '';
+
+  // Atualizar métricas dos criativos
+  const adsM = pd.ads || {};
+  document.querySelectorAll('[data-ad-id]').forEach(card => {
+    const adId = card.getAttribute('data-ad-id');
+    const m = adsM[adId];
+    if (!m) return;
+    const sEl = card.querySelector('[data-ad-metric="spend"]');
+    const rEl = card.querySelector('[data-ad-metric="reach"]');
+    const resEl = card.querySelector('[data-ad-metric="resultado"]');
+    const ctrEl = card.querySelector('[data-ad-metric="ctr"]');
+    if (sEl) sEl.textContent = fmtBrl(m.spend);
+    if (rEl) rEl.textContent = fmtNum(m.reach);
+    if (resEl) resEl.textContent = fmtNum(m.resultado_val);
+    if (ctrEl) ctrEl.textContent = fmtPct(m.ctr);
+  });
+
+  renderDailyBars(filtered);
+}
+
+// ═══ EXPORTAR PDF ═══
+function exportPDF() {
+  window.print();
+}
+
+// ═══ THEME TOGGLE ═══
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') !== 'light';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('theme-icon').textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+  localStorage.setItem('report-theme', isDark ? 'light' : 'dark');
+}
+
+(function() {
+  const saved = localStorage.getItem('report-theme');
+  if (saved && saved !== 'dark') {
+    document.documentElement.setAttribute('data-theme', saved);
+    document.getElementById('theme-icon').textContent = saved === 'light' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+  }
+})();
+
+// ═══ GRÁFICO CSS (barras diárias) ═══
+function renderDailyBars(data) {
+  var container = document.getElementById('dailyBars');
+  var axis = document.getElementById('dailyAxis');
+  if (!container) return;
+  if (!data || data.length === 0) {
+    container.innerHTML = '<div style="padding:40px;text-align:center;color:var(--muted);font-size:14px;">Sem dados para o período</div>';
+    if (axis) axis.innerHTML = '';
+    return;
+  }
+  var maxSpend = 0;
+  for (var i = 0; i < data.length; i++) {
+    if (data[i].spend > maxSpend) maxSpend = data[i].spend;
+  }
+  if (maxSpend === 0) maxSpend = 1;
+  var html = '';
+  for (var i = 0; i < data.length; i++) {
+    var d = data[i];
+    var h = Math.max(Math.round(d.spend / maxSpend * 170), 2);
+    var label = dateBr(d.date);
+    html += '<div class="css-bar" style="height:' + h + 'px;" title="' + label + '">';
+    html += '<div class="bar-tip"><strong>' + label + '</strong><br>';
+    html += 'Gasto: ' + fmtBrl(d.spend) + '<br>';
+    html += 'Cliques: ' + fmtNum(d.clicks) + '<br>';
+    html += 'Alcance: ' + fmtNum(d.reach) + '</div></div>';
+  }
+  container.innerHTML = html;
+  // Axis labels
+  if (axis && data.length > 1) {
+    axis.innerHTML = '<span>' + dateBr(data[0].date) + '</span><span>' + dateBr(data[data.length-1].date) + '</span>';
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  renderDailyBars(DAILY_DATA);
+  renderCamps('last_30d');
+});
+</script>
+
+</body>
+</html>
